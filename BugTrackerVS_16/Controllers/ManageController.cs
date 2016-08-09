@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BugTrackerVS_16.Models;
+using static BugTrackerVS_16.EmailService;
 
 namespace BugTrackerVS_16.Controllers
 {
@@ -56,6 +57,7 @@ namespace BugTrackerVS_16.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangeUsernameSuccess ? "Your user name has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -245,6 +247,42 @@ namespace BugTrackerVS_16.Controllers
         }
 
         //
+        // GET: /Manage/ChanngeUserName
+        public ActionResult UserName()
+        {
+            return View();
+        }
+
+        
+       // POST: /Manage/ChangeUserName
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public async Task<ActionResult> UserName(ChangeUserNameViewModel model)
+       {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+          }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user == null)
+            {
+                return View();
+            }
+            user.UserName = model.NewUserName;
+            var result = await UserManager.UpdateAsync(user); 
+            if (result.Succeeded)
+         {
+                if (user != null)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                }
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangeUsernameSuccess });
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
+
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
@@ -275,6 +313,7 @@ namespace BugTrackerVS_16.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
 
         //
         // GET: /Manage/ManageLogins
@@ -381,7 +420,8 @@ namespace BugTrackerVS_16.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            ChangeUsernameSuccess
         }
 
 #endregion
