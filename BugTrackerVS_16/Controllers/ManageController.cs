@@ -57,7 +57,7 @@ namespace BugTrackerVS_16.Controllers
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                message == ManageMessageId.ChangeUsernameSuccess ? "Your user name has been changed."
+                :message == ManageMessageId.ChangeUsernameSuccess ? "Your user name has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
                 : message == ManageMessageId.Error ? "An error has occurred."

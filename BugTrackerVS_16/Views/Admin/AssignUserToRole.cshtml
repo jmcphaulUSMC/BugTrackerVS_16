@@ -1,0 +1,52 @@
+﻿@model BugTrackerVS_16.Models.AssignUserToRoleViewModel
+
+@{
+    ViewBag.Title = "EditRolesAndUser";
+}
+
+<h2>Add/Remove User </h2>
+
+<section class="content-wrap ecommerce-products">
+
+    <div class="card">
+
+        <div class="title">
+            <!-- Title -->
+            <h4>Change Users @Model.Roles Role</h4>
+        </div>
+
+        <div class="content">
+
+            @using (Html.BeginForm("AssignUserToRole","Admin",FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.Id)
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <div class="form-group">
+                        <!-- Begin user select -->
+                        @Html.Label("Add Users to Role", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.ListBox("SelectedRoles", Model.Roles)
+                        </div>
+                    </div><!-- /user select -->
+
+                    <button type="submit">Submit</button>
+
+                </div>
+            }
+    </div><!-- /card -->
+        </div>
+
+</section>
+
+@section scripts
+{
+    <script src="~/Scripts/select2/select2.min.js"></script><!-- select2 -->
+    <script type="text/javascript">
+        $('select').select2();
+    </script>
+
+}
+Add Comment Collapse

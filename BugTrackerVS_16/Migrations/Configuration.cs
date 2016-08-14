@@ -47,60 +47,109 @@ namespace BugTrackerVS_16.Migrations
                 {
                     UserName = "jmcphaul@aggies.ncat.edu",
                     Email = "jmcphaul@aggies.ncat.edu",
-                    FristName = "Johnthan",
+                    FirstName = "Johnthan",
                     LastName = "Mcphaul",
                     DisplayName = "jmcphaul"
                 }, "John2905");
             }
 
-            if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com"))
+            if (!context.Users.Any(u => u.Email == "Developer@gustr.com"))
             {
                 userManager.Create(new ApplicationUser
                 {
-                    UserName = "moderator@coderfoundry.com",
-                    Email = "moderator@coderfoundry.com",
-                    FristName = "Coder",
-                    LastName = "Foundry",
-                    DisplayName = "CoderFoundry"
-                }, "Password-1");
+                    UserName = "Developer@gustr.com",
+                    Email = "Developer@gustr.com",
+                    FirstName = "Developer",
+                    LastName = "Developer",
+                    DisplayName = "Developer"
+                }, "developer");
             }
 
-            if (!context.Users.Any(u => u.Email == "jmcphaul@aggies.ncat.edu"))
+            if (!context.Users.Any(u => u.Email == "submitter@gustr.com"))
             {
                 userManager.Create(new ApplicationUser
                 {
-                    UserName = "jmcphaul@aggies.ncat.edu",
-                    Email = "jmcphaul@aggies.ncat.edu",
-                    FristName = "Johnthan",
-                    LastName = "Mcphaul",
-                    DisplayName = "jmcphaul"
-                }, "John2905");
+                    UserName = "submitter@gustr.com",
+                    Email = "submitter@gustr.com",
+                    FirstName = "submitter",
+                    LastName = "submitter",
+                    DisplayName = "submitter"
+                }, "submitter");
             }
 
-            if (!context.Users.Any(u => u.Email == "moderator@coderfoundry.com"))
+            if (!context.Users.Any(u => u.Email == "projectmanager@gustr.com"))
             {
                 userManager.Create(new ApplicationUser
                 {
-                    UserName = "moderator@coderfoundry.com",
-                    Email = "moderator@coderfoundry.com",
-                    FristName = "Coder",
-                    LastName = "Foundry",
-                    DisplayName = "CoderFoundry"
-                }, "Password-1");
+                    UserName = "projectmanager@gustr.com",
+                    Email = "projectmanager@gustr.com",
+                    FirstName = "project",
+                    LastName = "manager",
+                    DisplayName = "PM"
+                }, "projectmanager");
             }
 
 
             var userId = userManager.FindByEmail("jmcphaul@aggies.ncat.edu").Id;
             userManager.AddToRole(userId, "Admin");
 
-            var userId1 = userManager.FindByEmail("moderator@coderfoundry.com").Id;
+            var userId1 = userManager.FindByEmail("submitter@gustr.com").Id;
             userManager.AddToRole(userId1, "Submitter");
 
-            var userId2 = userManager.FindByEmail("jmcphaul@aggies.ncat.edu").Id;
+            var userId2 = userManager.FindByEmail("projectmanager@gustr.com").Id;
             userManager.AddToRole(userId2, "ProjectManager");
 
-            var userId3 = userManager.FindByEmail("moderator@coderfoundry.com").Id;
+            var userId3 = userManager.FindByEmail("Developer@gustr.com").Id;
             userManager.AddToRole(userId3, "Developer");
+
+            if (!context.TicketPriorities.Any(u => u.Name == "High"))
+            {
+                context.TicketPriorities.Add(new TicketPriorities
+                {
+                    Name = "High"
+                });
+            }
+            if (!context.TicketPriorities.Any(u => u.Name == "Medium"))
+            {
+                context.TicketPriorities.Add(new TicketPriorities
+                {
+                    Name = "Medium"
+                });
+            }
+            if (!context.TicketPriorities.Any(u => u.Name == "Low"))
+            {
+                context.TicketPriorities.Add(new TicketPriorities
+                {
+                    Name = "Low"
+                });
+            }
+            if (!context.TicketPriorities.Any(u => u.Name == "Urgent"))
+            {
+                context.TicketPriorities.Add(new TicketPriorities
+                {
+                    Name = "Urgent"
+                });
+            }
+
+            if (!context.TicketTypes.Any(u => u.Name == "Production Fix"))
+            { context.TicketTypes.Add(new TicketTypes { Name = "Production Fix" }); }
+
+            if (!context.TicketTypes.Any(u => u.Name == "Project Task"))
+            { context.TicketTypes.Add(new TicketTypes { Name = "Project Task" }); }
+
+            if (!context.TicketTypes.Any(u => u.Name == "Software Update"))
+            { context.TicketTypes.Add(new TicketTypes { Name = "Software Update" }); }
+
+
+            if (!context.TicketStatuses.Any(u => u.Name == "Complete"))
+            { context.TicketStatuses.Add(new TicketStatuses { Name = "Complete" }); }
+
+            if (!context.TicketStatuses.Any(u => u.Name == "In Development"))
+            { context.TicketStatuses.Add(new TicketStatuses { Name = "In Development" }); }
+
+            if (!context.TicketStatuses.Any(u => u.Name == "New"))
+            { context.TicketStatuses.Add(new TicketStatuses { Name = "New" }); }
+
         }
     }
 }

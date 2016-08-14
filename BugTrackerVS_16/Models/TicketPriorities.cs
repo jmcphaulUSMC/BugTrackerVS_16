@@ -7,14 +7,8 @@ namespace BugTrackerVS_16.Models
 {
     public class TicketPriorities
     { 
-        public TicketPriorities()
-        {
-            Ticket = new HashSet<Tickets>();
-        }
-   
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Tickets> Ticket { get; set; }
     }
 }

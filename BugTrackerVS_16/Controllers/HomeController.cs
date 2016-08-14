@@ -1,5 +1,10 @@
-﻿using BugTrackerVS_16.Models.User_Roles;
+﻿using BugTrackerVS_16.Models;
+using BugTrackerVS_16.Models.User_Roles;
+using System.Linq;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
+
+
 
 namespace BugTrackerVS_16.Controllers
 {
@@ -8,25 +13,21 @@ namespace BugTrackerVS_16.Controllers
 
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult RoleAdmin()
-        {
+
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult RoleAdmin(string userId, string rId)
+
+        public ActionResult About()
         {
-            UserRolesHelper helper = new UserRolesHelper();
 
-            helper.AddUserToRole(userId, rId);
-            helper.AddUserToRole(userId, rId);
-            helper.RemoveUserFromRole(userId, rId);
-            
             return View();
+        }
 
+        public ActionResult SelectUser()
+        {
+
+            return View();
         }
 
         public ActionResult Contact()

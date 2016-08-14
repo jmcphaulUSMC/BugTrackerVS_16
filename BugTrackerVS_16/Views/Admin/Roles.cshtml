@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BugTrackerVS_16.Models.RoleViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+
+<section class="">
+
+    <div class="">
+
+        <div class="title">
+
+            <!-- Title -->
+            <h3>Edit User Roles </h3>
+        </div><!-- /title -->
+
+        <div class="content">
+
+            <table class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Users</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+
+                        <tr>
+                            <td>@user.Users.FirstName</td>
+                            @foreach (var roles in user.Roles)
+                            {
+                                <th>Roles</th>
+                                <td>@roles</td>
+                            }
+                            
+                            <td>
+                                <a href="@Url.Action("AssignUserToRole", "Admin", new { id = user.Users.Id })" class="btn btn-primary">Assign User Role</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table><!-- /table -->
+
+        </div><!-- /content -->
+
+    </div><!-- /card -->
+
+
+</section>

@@ -9,16 +9,16 @@ namespace BugTrackerVS_16.Models
     {
         public Projects()
         {
-            Ticket = new HashSet<Tickets>();
-            User = new HashSet<ApplicationUser>();
+            Tickets = new HashSet<Tickets>();
+            Users = new HashSet<ApplicationUser>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
     
 
-        public virtual ICollection<ApplicationUser> User { get; set; }
-        public virtual ICollection<Tickets> Ticket { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<Tickets> Tickets { get; set; }
 
 
     }
