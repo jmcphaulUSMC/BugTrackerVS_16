@@ -22,6 +22,7 @@
                 <thead>
                     <tr>
                         <th>Users</th>
+                        <th>Roles</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,12 +31,14 @@
 
                         <tr>
                             <td>@user.Users.FirstName</td>
-                            @foreach (var roles in user.Roles)
-                            {
-                                <th>Roles</th>
-                                <td>@roles</td>
-                            }
-                            
+                            <td>
+                                @foreach (var roles in user.Roles)
+                                {
+
+                                    <p>@roles</p>
+
+                                }
+                            </td>                      
                             <td>
                                 <a href="@Url.Action("AssignUserToRole", "Admin", new { id = user.Users.Id })" class="btn btn-primary">Assign User Role</a>
                             </td>

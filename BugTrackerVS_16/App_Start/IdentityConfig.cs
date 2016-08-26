@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Net.Mail;
 using SendGrid;
 
+
 namespace BugTrackerVS_16
 {
     public class EmailService : IIdentityMessageService

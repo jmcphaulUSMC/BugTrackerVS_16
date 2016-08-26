@@ -1,0 +1,52 @@
+﻿@model BugTrackerVS_16.Models.Tickets
+
+@if (ViewBag.AllowedToComment)
+{
+<!--********** COMMENT SECTION ***********-->
+<div class="content-form">
+    @using (Html.BeginForm("Create", "TicketComments", new { id = Model.Id }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+            <form>
+                <input type="hidden" name="TicketId" value="@Model.Id" />
+
+                <!-- *********** SECURTIY REQUIRES USER TO BE AUTHENTICATED TO COMMENT *********** -->
+                <!--THIS IS ONLY ALLOWING USERS TO COMMENT IF THEY HAVE BEEN AUTHENTICATED TO DO SO IF NOT THEY HAVE A LINK THE REDIRECT THEM TO THE LOGIN PORTAL -->
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <textarea placeholder="Comment" id="Comment" name="Comment"></textarea>
+                    <input type="submit" value="SEND" />
+                }
+                else
+                {
+                    <h4 style="color: #FFC600; float: left">Please <a href="@Url.Action("Login", "Account")">Login</a> to Post a Comment</h4>
+                }
+            </form>
+    }
+    
+    <!--********* COMMENT DISPLAY SECTION *********-->
+    <!--LISTING ALL THE COMMENTS USING MY FOR EACH LOOP. THEN USE A IF STATEMENT TO FIRST CHECK IS TO SEE IF I HAVE ANY COMMENTS IF THAT IS EQUAL TO 0. "NO COMMENTS" THE ELSE PART OF THE STATEMENT WILL DISPLAY THE COMMENTS AND LIST THEM BY DESCENDING ORDER  -->
+
+    @if (Model.TicketComments.Count == 0)
+    {
+        <h4 style="float:left">No Comments</h4>
+    }
+    else
+    {
+        foreach (var item in Model.TicketComments.OrderByDescending(c => c.Created))
+        {
+            <div class="comment-info">
+                @Html.DisplayFor(model => model.AssignedToUser.FirstName)
+                <h5>@item.User.DisplayName</h5>
+                <h5>@item.Created</h5>
+                <h5>@item.Comment</h5>
+                @if (User.IsInRole("Admin") | User.IsInRole("ProjectManager"))
+                {
+                    <a href="@Url.Action("Edit", "TicketComments", new { id = item.Id })">Edit</a>
+                            <a href="@Url.Action("Delete", "Comments", new { id = item.Id })">Delete</a>
+                }
+            </div>
+        }
+    }
+</div>
+}

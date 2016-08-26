@@ -96,3 +96,11 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+                    
+                            <!--********** COMMENT SECTION ***********-->
+<div>@Html.Partial("_IndexComments")</div>
+
+                            <!--********** ATTACHMENTS SECTION ***********-->
+<div>@Html.Partial("_IndexAttachment")</div>

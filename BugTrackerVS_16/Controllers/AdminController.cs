@@ -2,9 +2,6 @@
 using BugTrackerVS_16.Models.User_Roles;
 using System.Linq;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Ajax.Utilities;
-using System.Web.Security;
 using System.Collections.Generic;
 
 namespace BugTrackerVS_16.Controllers
@@ -18,15 +15,14 @@ namespace BugTrackerVS_16.Controllers
         public ActionResult Roles()
         {
 
-            //Right here I Created an instance of my userViewModel which is a class in my Model called "UserViewModel"
-            List<RoleViewModel> userList = new List<RoleViewModel>();
-            foreach (var user in db.Users.ToList())//Right here using a for each loop to cycle through user in the database and put them in a list 
+            List<RoleViewModel> userList = new List<RoleViewModel>();//<=== Right here I Created an instance of my userViewModel which is a class in my Model called "UserViewModel" and I'm putting into a list 
+            foreach (var user in db.Users.ToList())//Right here using a for each loop to cycle through Users in the database and put them in a list 
             {
-                var model = new RoleViewModel();
-                model.Users = user;
-                model.Roles = helper.ListUserRoles(user.Id).ToList();
-                userList.Add(model);
-                //Right here I'm calling to the database and telling it to give every role that exists in the database 
+                var model = new RoleViewModel(); //<== Right here I made another instance of my "user view model" to access it's properties 
+                model.Users = user; //<==== Right here I'm setting "Users" from my model equal to the variable in the foreach loop
+                model.Roles = helper.ListUserRoles(user.Id).ToList(); //<=== Right here I'm setting "Roles" equal to my helper class and the I'm using ListUserRoles method and the paramater is grabbing user "Id" and then put them in a list
+                userList.Add(model);//<=== Right here I'm grabbing my UserList and I'm adding my second model to it 
+                
             };
 
             //Right here I want the view to retun model to the Roles view 
@@ -36,7 +32,8 @@ namespace BugTrackerVS_16.Controllers
 
 
         //GET: Assign/UserToRoles
-        public ActionResult AssignUserToRole(string id) //<==(roleName has to come along with data, to identify the role I just clicked)
+        [Authorize(Roles = "Admin")]
+        public ActionResult AssignUserToRole(string id) //<==(The "id" has to come along with data, to identify the role I just clicked on to assign user to Roles)
 
         {
             var userdb = db.Users.Find(id); //<==(go to the database find users and then put in a list )
@@ -53,7 +50,7 @@ namespace BugTrackerVS_16.Controllers
 
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         //POST: Assign/UsersToRoles EDIT
         public ActionResult AssignUserToRole(AssignUserToRoleViewModel model)
 

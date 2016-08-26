@@ -1,3 +1,5 @@
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.dll
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.csprojResolveAssemblyReference.cache
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\ApplicationInsights.config
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\roslyn\csc.exe
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -40,6 +42,11 @@ C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.Twitt
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Web.Infrastructure.dll
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Newtonsoft.Json.dll
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Owin.dll
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGrid.CSharp.HTTP.Client.dll
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGrid.dll
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGrid.SmtpApi.dll
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGridMail.dll
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Net.Http.Formatting.dll
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.Helpers.dll
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.Mvc.dll
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.Optimization.dll
@@ -54,6 +61,8 @@ C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.AI.Web.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.AI.WindowsServer.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.ApplicationInsights.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Newtonsoft.Json.xml
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Net.Http.Formatting.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.Helpers.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.Mvc.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.Optimization.xml
@@ -62,7 +71,6 @@ C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.WebPages.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.WebPages.Deployment.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Web.WebPages.Razor.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Antlr3.Runtime.pdb
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Newtonsoft.Json.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\EntityFramework.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\EntityFramework.SqlServer.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.AspNet.Identity.Core.xml
@@ -77,12 +85,4 @@ C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.OAuth
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.Google.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.Twitter.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.dll
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.pdb
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGrid.CSharp.HTTP.Client.dll
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGrid.dll
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGrid.SmtpApi.dll
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\SendGridMail.dll
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Net.Http.Formatting.dll
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\System.Net.Http.Formatting.xml
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.csprojResolveAssemblyReference.cache
