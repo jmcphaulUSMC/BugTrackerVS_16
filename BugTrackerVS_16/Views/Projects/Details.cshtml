@@ -1,26 +1,87 @@
 ﻿@model BugTrackerVS_16.Models.Projects
 
 @{
-    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_BNewLayout.cshtml";
+
 }
 
+<style>
+a.my-link { color: #ffffff }
+a.my-class { color: #ffffff }
+a.my-class:active { color: #ffffff }
+a.my-class:link { color: #ffffff }
+a.my-class:visited { color: #ffffff }
+</style>
 <h2>Details</h2>
 
 <div>
     <h4>Projects</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <div class="btn btn-warning">
+        @Html.ActionLink("Previous Page", "Index", new { @class = "my-class" })
+    </div>
 
-    </dl>
+    <!--TABLE FOR PROEJCTS-->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Project
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+                <td>
+                    <div class="btn btn-info">
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "my-class" })
+                    </div>
+                </td>
+           </tr>
+     </tbody>
+    </table>
+    <!--****** END TABLE FOR PROEJCTS ******-->
+
+    <!--TABLE FOR MEMBERS-->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Members
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @foreach (var users in Model.Users)
+                    {
+                        <p>@users.FirstName</p>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--****** END TABLE FOR MEMBERS ******-->
+
+    <!--********** TICKETS SECTION ***********-->
+   <div id="">@Html.Partial("_IndexProjects", Model.Tickets)</div>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+<!--DataTables-->
+@section scripts{
+
+    <script>
+	$(function()	{
+		$('#dataTable').dataTable();
+	});
+    </script>
+}

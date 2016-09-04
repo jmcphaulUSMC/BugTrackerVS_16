@@ -12,7 +12,7 @@ namespace BugTrackerVS_16.Models
         public string Property { get; set; }
         public string Oldvalue { get; set; }
         public string NewValue { get; set; }
-        public bool? Changed { get; set; }
+        public DateTimeOffset Changed { get; set; }
         public string UserId { get; set; }
 
         public virtual ApplicationUser User { get; set; }

@@ -11,38 +11,25 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Ticket.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FilePath)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FileURL)
-        </th>
-        <th></th>
+        <th>@Html.DisplayNameFor(model => model.Ticket.Title)</th>
+        <th>@Html.DisplayNameFor(model => model.User.FirstName)</th>
+        <th>@Html.DisplayNameFor(model => model.FilePath)</th>
+        <th>@Html.DisplayNameFor(model => model.Description)</th>
+        <th>@Html.DisplayNameFor(model => model.Created)</th>
+        <th>@Html.DisplayNameFor(model => model.FileURL)</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ticket.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FilePath)
-        </td>
+        <td>@Html.DisplayFor(modelItem => item.Ticket.Title)</td>
+        <td>@Html.DisplayFor(modelItem => item.User.FirstName)</td>
+        <td>@Html.DisplayFor(modelItem => item.FilePath) </td>
+
+
+
+
+         
+       
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>

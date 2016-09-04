@@ -55,7 +55,7 @@ namespace BugTrackerVS_16.Controllers
             {
                 //check the file name to make sure its an image
                 var ext = Path.GetExtension(image.FileName).ToLower();
-                if (ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".gif" && ext != ".bmp" && ext != ".txt")
+                if (ext != ".png" && ext != ".jpg" && ext != ".jpeg" && ext != ".gif" && ext != ".bmp" && ext != ".txt" && ext != ".pdf")
                     ModelState.AddModelError("image", "Invalid Format.");
             }
 
@@ -77,7 +77,7 @@ namespace BugTrackerVS_16.Controllers
                 ticketAttachments.Created = DateTime.Now;
                 db.TicketAttachments.Add(ticketAttachments);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Tickets" , new { id = tId });
             }
 
             ViewBag.TicketId = new SelectList(db.Tickets, "Id", "Title", ticketAttachments.TicketId);

@@ -14,22 +14,27 @@ namespace BugTrackerVS_16.Controllers
         //GET: Users/UserRoles
         public ActionResult Roles()
         {
-
-            List<RoleViewModel> userList = new List<RoleViewModel>();//<=== Right here I Created an instance of my userViewModel which is a class in my Model called "UserViewModel" and I'm putting into a list 
-            foreach (var user in db.Users.ToList())//Right here using a for each loop to cycle through Users in the database and put them in a list 
+            if (User.IsInRole("ProjectManager"))
             {
-                var model = new RoleViewModel(); //<== Right here I made another instance of my "user view model" to access it's properties 
-                model.Users = user; //<==== Right here I'm setting "Users" from my model equal to the variable in the foreach loop
-                model.Roles = helper.ListUserRoles(user.Id).ToList(); //<=== Right here I'm setting "Roles" equal to my helper class and the I'm using ListUserRoles method and the paramater is grabbing user "Id" and then put them in a list
-                userList.Add(model);//<=== Right here I'm grabbing my UserList and I'm adding my second model to it 
-                
-            };
+                List<RoleViewModel> userList = new List<RoleViewModel>();//<=== Right here I Created an instance of my userViewModel which is a class in my Model called "UserViewModel" and I'm putting into a list 
+                foreach (var user in db.Users.ToList())//Right here using a for each loop to cycle through Users in the database and put them in a list 
+                {
+                    var model = new RoleViewModel(); //<== Right here I made another instance of my "user view model" to access it's properties 
+                    model.Users = user; //<==== Right here I'm setting "Users" from my model equal to the variable in the foreach loop
+                    model.Roles = helper.ListUserRoles(user.Id).ToList(); //<=== Right here I'm setting "Roles" equal to my helper class and the I'm using ListUserRoles method and the paramater is grabbing user "Id" and then put them in a list
+                    userList.Add(model);//<=== Right here I'm grabbing my UserList and I'm adding my second model to it 
+                }
 
-            //Right here I want the view to retun model to the Roles view 
-            return View(userList);
-
+                //Right here I want the view to retun model to the Roles view 
+                return View(userList);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
         }
-
+         
 
         //GET: Assign/UserToRoles
         [Authorize(Roles = "Admin")]

@@ -1,0 +1,28 @@
+﻿@model BugTrackerVS_16.Models.Tickets
+
+
+@if (Model.TicketHistories.Count == 0)
+{
+    @Html.HiddenFor(m => m.TicketHistories)
+    <h4 style="float:left">No History</h4>
+}
+else
+{
+    <table id="ticket-history">
+            <thead>
+                <tr><th>Changed</th><th>Display Name</th><th>Property</th><th>Old Value</th><th>New Value</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TicketHistories)
+    {
+                    <tr>
+                        <td>@item.Changed</td>
+                        <td>@item.User.UserName</td>
+                        <td>@item.Property</td>
+                        <td>@item.Oldvalue</td>
+                        <td>@item.NewValue</td>
+                    </tr>
+                }
+            </tbody>
+     </table>
+}

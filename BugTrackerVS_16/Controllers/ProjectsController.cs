@@ -16,24 +16,25 @@ namespace BugTrackerVS_16.Controllers
 
        private ApplicationDbContext db = new ApplicationDbContext();
               ProjectsHelper pjHelper = new ProjectsHelper();
-                
+        UserRolesHelper help = new UserRolesHelper();
+
         // GET: Projects
         [Authorize]
         public ActionResult Index()//(pass in projects id
         {
+
             if (User.IsInRole("Admin"))
             {
                 return View(db.Projects.ToList());
             }
             else
             {
-                // var user = db.Users.Find(id);
                 var userId = User.Identity.GetUserId();
                 var AssignProject = pjHelper.AssignedUserToProject(userId);
 
                 return View(AssignProject);
             }
-
+            
         }
 
 
@@ -57,6 +58,9 @@ namespace BugTrackerVS_16.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
+            var manager = help.UsersInRole("ProjectManager");
+
+            ViewBag.ManagerId = new SelectList(manager, "Id", "DisplayName");
             return View();
         }
 
@@ -65,10 +69,11 @@ namespace BugTrackerVS_16.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Projects projects)
+        public ActionResult Create([Bind(Include = "Id,Name, ManagerId")] Projects projects)
         {
             if (ModelState.IsValid)
             {
+
                 db.Projects.Add(projects);
                 db.SaveChanges();
                 return RedirectToAction("Index");

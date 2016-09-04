@@ -34,6 +34,7 @@ namespace BugTrackerVS_16.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            RedirectToAction("Index", "Projects");
             return View();
         }
 

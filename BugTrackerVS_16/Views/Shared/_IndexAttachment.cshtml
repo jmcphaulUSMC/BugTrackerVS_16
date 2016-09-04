@@ -6,6 +6,7 @@
         @using (Html.BeginForm("Create", "TicketAttachments", new { tId = Model.Id }, FormMethod.Post, new { enctype = "Multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.TicketAttachments)
             <div class="form-horizontal">
 
                 <label class="control-label">Attachment</label>
@@ -21,4 +22,36 @@
         }
     </div>
 }
+<div class="col-md-6">
+    <h4>Ticket Attachments</h4>
+    <table class="table-striped" id="tableAttachments">
+
+        <thead>
+            <tr>
+                <th>Created</th><th>By</th><th>Attachment</th><th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var attach in Model.TicketAttachments)
+            {
+                <tr>
+                    @attach.Created.ToString("d");
+
+                    <td>@attach.User.DisplayName</td>
+                    <td><a href="@attach.FileURL">@attach.Created</a></td>
+                    <td>@attach.Description</td>
+
+                    @if (attach.FileURL != null)
+
+                    {
+                        <td><img class="img-responsive" src="@attach.FileURL" alt="" /></td>
+                    }
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
 

@@ -43,13 +43,21 @@ namespace BugTrackerVS_16.Models.User_Roles
                 var user = db.Users.Find(userId);//Get the user from the database
                 if (addingUser)//check to see if user is being added or removed from project
                     project.Users.Add(user);//If 'addingUser' is true, Add the user to the project
-   
-            else
+                db.SaveChanges();
+                return true;//return true means that the user was added to the project successfully
+            }
+            else if (userId != null && projectId != null)
+            {
+                var project = db.Projects.Find(projectId);//Get the project from the database
+                var user = db.Users.Find(userId);//Get the user from the database
                 project.Users.Remove(user);//If 'addingUser' is false, Remove user from project
                 db.SaveChanges();//Save chages to the database
                 return true;//return true means that the user was added to the project successfully
             }
+             else
+            {
             return false;//if the userId or projectId are null, return false, meaning that the user was not added to the project
+            }
         }
 
         public bool RemoveUserFromProject(string userId, int? projectId)
@@ -73,14 +81,7 @@ namespace BugTrackerVS_16.Models.User_Roles
         public IList<Projects> AssignedUserToProject(string id)
         {
             //go to the database and find projects by id 
-             return db.Users.Find(id).Projects.ToList();
-
-            //go to the database and to the projects table find the projects where the project user collection contains that user
-            //var AssignProject = db.Projects.Where(p => p.Users.Contains(user));
-
-            //return AssignProject.ToList();
-
-            
+             return db.Users.Find(id).Projects.ToList(); 
         }
     }
 }

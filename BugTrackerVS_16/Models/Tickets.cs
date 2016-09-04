@@ -12,8 +12,8 @@ namespace BugTrackerVS_16.Models
     {
         public Tickets ()
         {
-            //Allows me to have access to my tables to pull out data 
-           
+            //Allows me to have access to my tables to pull out data
+             
             TicketComments = new HashSet<TicketComments>();
             TicketAttachments = new HashSet<TicketAttachments>();
             TicketHistories = new HashSet<TicketHistories>();

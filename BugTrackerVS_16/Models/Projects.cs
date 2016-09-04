@@ -20,7 +20,5 @@ namespace BugTrackerVS_16.Models
 
         public virtual ICollection<ApplicationUser> Users { get; set; }
         public virtual ICollection<Tickets> Tickets { get; set; }
-
-
     }
 }
