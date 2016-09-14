@@ -1,0 +1,109 @@
+﻿@model IList<BugTrackerVS_16.Models.Projects>
+
+<style>
+a.my-class { color: #ffffff }
+a.my-class:active { color: #ffffff }
+a.my-class:link { color: #ffffff }
+a.my-class:visited { color: #ffffff }
+</style>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="padding-md">
+    <h2>Recruit Projects</h2>
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="btn btn-danger">
+                @Html.ActionLink("New Project", "Create", new { @class="my-class" }) 
+            </div>
+        }
+
+
+    </p>
+    <table class="table table-striped table-bordered" id="dataTable" >
+        <thead>
+            <tr>
+                <th>Projects</th>
+                <th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.DisplayName("Members")
+                    }
+                </th>
+                <th>@Html.DisplayName("Action")</th>
+            </tr>
+        </thead>
+        <tbody style="border-color:#000000;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            foreach (var users in item.Users)
+                            {
+                                <p>@users.FirstName</p>
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="btn btn-primary">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "my-class" }) 
+                            </div>
+                            <div class="btn btn-info">
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "my-class" })
+                            </div>
+                            <div class="btn btn-success">
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "my-class" })
+                            </div>
+                            <div class="btn btn-warning">
+                                @Html.ActionLink("Assign User", "assignusers", new { id = item.Id }, new { @class = "my-class" })
+                            </div>
+                        }
+                        //Project Manager View for all project they assigned to
+                        else if (User.IsInRole("ProjectManager"))
+                        {
+                            <div>
+                                @Html.ActionLink("Tickets", "IndexProjects", "Tickets")|
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id })|
+                                @Html.ActionLink("Assign User", "assignusers", new { id = item.Id })
+                            </div>
+                        }
+                        else if (User.IsInRole("Developer"))
+                        {
+                            <div>
+                                @Html.ActionLink("Tickets", "IndexProjects", "Tickets")|
+                                @Html.ActionLink("Details", "Details", new { id = item.Id })
+                            </div>
+                        }
+                        else if (User.IsInRole("Submitter"))
+                        {
+                            <div>
+                                @Html.ActionLink("Tickets", "IndexProjects", "Tickets")|
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--DataTables-->
+@section scripts{
+
+<script>
+	$(function()	{
+		$('#dataTable').dataTable();
+	});
+</script>
+}

@@ -9,13 +9,14 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New ", "Create") |
+   
 
 
     @if (User.IsInRole("Admin") || User.IsInRole("ProjectManager") || User.IsInRole("Developer") || User.IsInRole("Submitter"))
     { <div>
-        @Html.ActionLink("Projects", "Index", "Projects")|
-        @Html.ActionLink("Assigned Tickets", "IndexAssign")
+        <a href="@Url.Action("Create","Tickets")" class="btn btn-success">Create New</a>
+        <a href="@Url.Action("Index","Projects")" class="btn btn-purple">Projects</a>
+        <a href="@Url.Action("IndexAssign","Tickets")" class="btn btn-info">Assign Tickets </a>
     </div>
     }
 
@@ -94,24 +95,42 @@
                 <td>
                    @if (User.IsInRole("Admin"))
                    {
-                    <div>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id })|
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+                        </ul>
                     </div>
                    }
                    else if (User.IsInRole("ProjectManager"))
                    {
-                    <div>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
+                        </ul>
                     </div>
                    }
                    else if (User.IsInRole("Submitter"))
                    {
-                    <div>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            Actions
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
+                            <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
+                        </ul>
                     </div>
                    }
                 </td>

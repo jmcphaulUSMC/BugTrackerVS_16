@@ -1,162 +1,118 @@
 ﻿@model BugTrackerVS_16.Models.Tickets
 
-@if (ViewBag.AllowedToComment)
-{
-<!--********** COMMENT SECTION ***********-->
-<div class="content-form">
-    @using (Html.BeginForm("Create", "TicketComments", new { id = Model.Id }, FormMethod.Post))
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 style="text-align:center">Ticket Comments </h2>
+    </div>
+    @if (ViewBag.AllowedToComment)
     {
-        @Html.AntiForgeryToken()
-            <form>
-                <input type="hidden" name="TicketId" value="@Model.Id" />
+        <!--********** COMMENT SECTION ***********-->
+        <div class="form-group">
+            @using (Html.BeginForm("Create", "TicketComments", new { id = Model.Id }, FormMethod.Post))
+                {
+                @Html.AntiForgeryToken()
+                <form>
+                        <input type="hidden" name="TicketId" value="@Model.Id" />
 
-                <!-- *********** SECURTIY REQUIRES USER TO BE AUTHENTICATED TO COMMENT *********** -->
-                <!--THIS IS ONLY ALLOWING USERS TO COMMENT IF THEY HAVE BEEN AUTHENTICATED TO DO SO IF NOT THEY HAVE A LINK THE REDIRECT THEM TO THE LOGIN PORTAL -->
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <textarea placeholder="Comment" id="Comment" name="Comment"></textarea>
-                    <input type="submit" value="SEND" />
-                }
-                else
-                {
-                    <h4 style="color: #FFC600; float: left">Please <a href="@Url.Action("Login", "Account")">Login</a> to Post a Comment</h4>
-                }
-            </form>
-    }
-    
-    <!--********* COMMENT DISPLAY SECTION *********-->
-    <!--LISTING ALL THE COMMENTS USING MY FOR EACH LOOP. THEN USE A IF STATEMENT TO FIRST CHECK IS TO SEE IF I HAVE ANY COMMENTS IF THAT IS EQUAL TO 0. "NO COMMENTS" THE ELSE PART OF THE STATEMENT WILL DISPLAY THE COMMENTS AND LIST THEM BY DESCENDING ORDER  -->
+                        <!-- *********** SECURTIY REQUIRES USER TO BE AUTHENTICATED TO COMMENT *********** -->
+                        <!--THIS IS ONLY ALLOWING USERS TO COMMENT IF THEY HAVE BEEN AUTHENTICATED TO DO SO IF NOT THEY HAVE A LINK THE REDIRECT THEM TO THE LOGIN PORTAL -->
+                        @if (User.Identity.IsAuthenticated)
+                    {
+                            <div class="input-group" style="width: 100%; height: 10%;">
+                                <input id="Comment" name="Comment" type="text" class="form-control" placeholder="Comment...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success btn-sm no-shadow" type="submit" id="btn-chat">Send</button>
+                                </span>
+                            </div>
+                        }
+                        else
+                        {
+                            <h4 style="color: #FFC600; float: left">Please <a href="@Url.Action("Login", "Account")">Login</a> to Post a Comment</h4>
+                        }
+                </form>
+            }
 
-    @if (Model.TicketComments.Count == 0)
-    {
-        <h4 style="float:left">No Comments</h4>
-    }
-    else
-    {
-        foreach (var item in Model.TicketComments.OrderByDescending(c => c.Created))
-        {
-            <div class="comment-info">
-                @Html.DisplayFor(model => model.AssignedToUser.FirstName)
-                <h5>@item.User.DisplayName</h5>
-                <h5>@item.Created</h5>
-                <h5>@item.Comment</h5>
-                @if (User.IsInRole("Admin") | User.IsInRole("ProjectManager"))
+            <!--********* COMMENT DISPLAY SECTION *********-->
+            <!--LISTING ALL THE COMMENTS USING MY FOR EACH LOOP. THEN USE A IF STATEMENT TO FIRST CHECK IS TO SEE IF I HAVE ANY COMMENTS IF THAT IS EQUAL TO 0. "NO COMMENTS" THE ELSE PART OF THE STATEMENT WILL DISPLAY THE COMMENTS AND LIST THEM BY DESCENDING ORDER  -->
+
+            @if (Model.TicketComments.Count == 0)
                 {
-                    <a href="@Url.Action("Edit", "TicketComments", new { id = item.Id })">Edit</a>
-                            <a href="@Url.Action("Delete", "Comments", new { id = item.Id })">Delete</a>
+                <h4 style="float:left; padding-top:2%;">No Comments</h4>
+            }
+            else
+            {
+                foreach (var item in Model.TicketComments.OrderByDescending(c => c.Created))
+                {
+                    <div class="col-md-12" style="padding-top: 4%;">
+                        <div class="smart-widget widget-purple">
+                            <div class="smart-widget-header">
+                                <i class="fa fa-comment"></i> Comment
+                                <span class="smart-widget-option">
+                                    <span class="refresh-icon-animated">
+                                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                                    </span>
+                                    <a href="~/Template/#" class="widget-toggle-hidden-option">
+                                        <i class="fa fa-cog"></i>
+                                    </a>
+                                    <a href="~/Template/#" class="widget-collapse-option" data-toggle="collapse">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a href="~/Template/#" class="widget-refresh-option">
+                                        <i class="fa fa-refresh"></i>
+                                    </a>
+                                    <a href="~/Template/#" class="widget-remove-option">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="smart-widget-inner">
+                                <div class="smart-widget-hidden-section">
+                                    <ul class="widget-color-list clearfix">
+                                        <li style="background-color:#20232b;" data-color="widget-dark"></li>
+                                        <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
+                                        <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
+                                        <li style="background-color:#2baab1;" data-color="widget-green"></li>
+                                        <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
+                                        <li style="background-color:#fbc852;" data-color="widget-orange"></li>
+                                        <li style="background-color:#e36159;" data-color="widget-red"></li>
+                                        <li style="background-color:#7266ba;" data-color="widget-purple"></li>
+                                        <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
+                                        <li style="background-color:#fff;" data-color="reset"></li>
+                                    </ul>
+                                </div>
+                                <div class="smart-widget-body">
+                                    <div id="chatScroll">
+                                        <ul class="chat">
+                                            <li class="center clearfix">
+                                                <div class="chat-body clearfix">
+                                                    <div class="header">
+                                                        @Html.DisplayFor(model => model.AssignedToUser.FirstName) <strong class="primary-font">
+                                                            From:
+                                                        </strong>
+                                                        @item.User.DisplayName
+
+                                                        <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> @item.Created</small>
+                                                    </div>
+                                                    <p>
+                                                        @item.Comment
+                                                    </p>
+
+                                                </div>
+                                                @if (User.IsInRole("Admin") | User.IsInRole("ProjectManager"))
+                                                {
+                                                    <a href="@Url.Action("Edit", "TicketComments", new { id = item.Id })">Edit</a>
+                                                    <a href="@Url.Action("Delete", "Comments", new { id = item.Id })">Delete</a>
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!-- ./smart-widget-inner -->
+                        </div><!-- ./smart-widget -->
+                    </div><!-- ./col -->
                 }
-            </div>
-        }
+            }
+        </div>
     }
 </div>
-}
-<div class="col-lg-6">
-    <div class="smart-widget widget-purple">
-        <div class="smart-widget-header">
-            <i class="fa fa-comment"></i> Chat
-            <span class="smart-widget-option">
-                <span class="refresh-icon-animated">
-                    <i class="fa fa-circle-o-notch fa-spin"></i>
-                </span>
-                <a href="~/Template/#" class="widget-toggle-hidden-option">
-                    <i class="fa fa-cog"></i>
-                </a>
-                <a href="~/Template/#" class="widget-collapse-option" data-toggle="collapse">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a href="~/Template/#" class="widget-refresh-option">
-                    <i class="fa fa-refresh"></i>
-                </a>
-                <a href="~/Template/#" class="widget-remove-option">
-                    <i class="fa fa-times"></i>
-                </a>
-            </span>
-        </div>
-        <div class="smart-widget-inner">
-            <div class="smart-widget-hidden-section">
-                <ul class="widget-color-list clearfix">
-                    <li style="background-color:#20232b;" data-color="widget-dark"></li>
-                    <li style="background-color:#4c5f70;" data-color="widget-dark-blue"></li>
-                    <li style="background-color:#23b7e5;" data-color="widget-blue"></li>
-                    <li style="background-color:#2baab1;" data-color="widget-green"></li>
-                    <li style="background-color:#edbc6c;" data-color="widget-yellow"></li>
-                    <li style="background-color:#fbc852;" data-color="widget-orange"></li>
-                    <li style="background-color:#e36159;" data-color="widget-red"></li>
-                    <li style="background-color:#7266ba;" data-color="widget-purple"></li>
-                    <li style="background-color:#f5f5f5;" data-color="widget-light-grey"></li>
-                    <li style="background-color:#fff;" data-color="reset"></li>
-                </ul>
-            </div>
-            <div class="smart-widget-body">
-                <div id="chatScroll">
-                    <ul class="chat">
-                        <li class="left clearfix">
-                            <span class="chat-img pull-left">
-                                <img src="~/Template/images/profile/profile2.jpg" alt="User Avatar">
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">John Doe</strong>
-                                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 12 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix">
-                            <span class="chat-img pull-right">
-                                <img src="~/Template/images/profile/profile3.jpg" alt="User Avatar">
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Jane Doe</strong>
-                                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 13 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="left clearfix">
-                            <span class="chat-img pull-left">
-                                <img src="~/Template/images/profile/profile2.jpg" alt="User Avatar">
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">John Doe</strong>
-                                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 20 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p>
-                            </div>
-                        </li>
-                        <li class="right clearfix">
-                            <span class="chat-img pull-right">
-                                <img src="~/Template/images/profile/profile3.jpg" alt="User Avatar">
-                            </span>
-                            <div class="chat-body clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Jane Doe</strong>
-                                    <small class="pull-right text-muted"><i class="fa fa-clock-o"></i> 25 mins ago</small>
-                                </div>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales at.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="smart-widget-footer">
-                <div class="input-group">
-                    <input id="btn-input" type="text" class="form-control input-sm" placeholder="type your message here...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-success btn-sm no-shadow" id="btn-chat">Send</button>
-                    </span>
-                </div><!-- /input-group -->
-            </div><!-- ./smart-widget-footer -->
-        </div><!-- ./smart-widget-inner -->
-    </div><!-- ./smart-widget -->
-</div><!-- ./col -->
+

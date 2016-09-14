@@ -67,6 +67,7 @@ namespace BugTrackerVS_16.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -80,7 +81,7 @@ namespace BugTrackerVS_16.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "Projects");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -92,6 +93,31 @@ namespace BugTrackerVS_16.Controllers
             }
         }
 
+        //
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [OutputCache(NoStore =true, Duration = 0, VaryByParam ="None")]
+        public async Task<ActionResult> DemoLogin(LoginViewModel model, string demo)
+        {
+      
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(demo, "John2905##", model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+                        return RedirectToAction("Index", "Projects");
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(model);
+            }
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]

@@ -5,33 +5,34 @@
 
 }
 
-
-<h2>Details</h2>
-
-<div>
-    <h4>Tickets</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>User</dt>
-        <dd>@Html.DisplayFor(model => model.OwnerUser.FirstName)</dd>
-        <dd>@Html.DisplayFor(model => model.AssignedToUser.FirstName)</dd>
-        <dt>Project</dt>
-        <dd>@Html.DisplayFor(model => model.Project.Name)</dd>
-        <dt>Priority</dt>
-        <dd>@Html.DisplayFor(model => model.TicketPriority.Name)</dd>
-        <dt>Status</dt>
-        <dd>@Html.DisplayFor(model => model.TicketStatus.Name)</dd>
-        <dt>Type</dt>
-        <dd>@Html.DisplayFor(model => model.TicketType.Name)</dd>
-        <dt>@Html.DisplayNameFor(model => model.Title)</dt>
-        <dd>@Html.DisplayFor(model => model.Title)</dd>
-        <dt>@Html.DisplayNameFor(model => model.Description) </dt>
-        <dd>@Html.DisplayFor(model => model.Description)</dd>
-        <dt>@Html.DisplayNameFor(model => model.Created)  </dt>
-        <dd>@Html.DisplayFor(model => model.Created)</dd>
-        <dt>@Html.DisplayNameFor(model => model.Updated) </dt>
-        <dd>@Html.DisplayFor(model => model.Updated)</dd>
-    </dl>      
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2>Ticket Details</h2>
+    </div>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>User</dt>
+                <dd>@Html.DisplayFor(model => model.OwnerUser.FirstName)</dd>
+            @*<dt>User</dt>
+            <dd>@Html.DisplayFor(model => model.AssignedToUser.FirstName)</dd>*@
+            <dt>Project</dt>
+            <dd>@Html.DisplayFor(model => model.Project.Name)</dd>
+            <dt>Priority</dt>
+            <dd>@Html.DisplayFor(model => model.TicketPriority.Name)</dd>
+            <dt>Status</dt>
+            <dd>@Html.DisplayFor(model => model.TicketStatus.Name)</dd>
+            <dt>Type</dt>
+            <dd>@Html.DisplayFor(model => model.TicketType.Name)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Title)</dt>
+            <dd>@Html.DisplayFor(model => model.Title)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Description) </dt>
+            <dd>@Html.DisplayFor(model => model.Description)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Created)  </dt>
+            <dd>@Html.DisplayFor(model => model.Created)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Updated) </dt>
+            <dd>@Html.DisplayFor(model => model.Updated)</dd>
+        </dl>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
@@ -39,11 +40,23 @@
 </p>
 
 
-                    
-                            <!--********** COMMENT SECTION ***********-->
-<div id="section1">@Html.Partial("_IndexComments", Model)</div>
 
-                            <!--********** ATTACHMENTS SECTION ***********-->
-<div id="section2">@Html.Partial("_IndexAttachment", Model)</div>
-                            <!--********** HISTORY SECTION ***********-->
-<div id="section3">@Html.Partial("_IndexHistories", Model)</div>
+<!--********** COMMENT SECTION ***********-->
+<div class="row">
+    <div class="col-md-6">
+        <div id="section1">@Html.Partial("_IndexComments", Model)</div>
+    </div>
+
+
+    <!--********** ATTACHMENTS SECTION ***********-->
+    <div class="col-md-6">
+        <div id="section2">@Html.Partial("_IndexAttachment", Model)</div>
+    </div>
+</div>
+
+<!--********** HISTORY SECTION ***********-->
+<div class="row">
+    <div class="col-md-12">
+        <div id="section3">@Html.Partial("_IndexHistories", Model)</div>
+    </div>
+</div>

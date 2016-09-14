@@ -15,6 +15,7 @@ namespace BugTrackerVS_16.Models
         public DateTimeOffset Changed { get; set; }
         public string UserId { get; set; }
 
+
         public virtual ApplicationUser User { get; set; }
         public virtual Tickets Ticket { get; set; }
     }

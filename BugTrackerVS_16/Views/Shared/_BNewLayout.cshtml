@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using BugTrackerVS_16.Models
+@using BugTrackerVS_16.Extensions
+@{
+    ApplicationUser Notification = new ApplicationUser();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -25,28 +30,26 @@
     <link href="~/Template/css/owl.theme.default.min.css" rel="stylesheet">
 
     <link href="~/Template/css/dataTables.bootstrap.css" rel="stylesheet" />
- 
+
     <!-- Simplify -->
     <link href="~/Template/css/simplify.min.css" rel="stylesheet">
-    
+
 
     @RenderSection("styles", required: false)
 
 </head>
+
 <body class="overflow-hidden">
-
-
     <div class="wrapper preload" style="height:10px">
         <div class="sidebar-right">
-           <div class="">
+            <div class="">
             </div><!-- sidebar-inner -->
         </div><!-- sidebar-right -->
 
-   <!--- **************
-    *******************
-    Top Nav Menu
-    ******************
-    **************-->
+        <!--- **************
+         Top Nav Menu
+         ******************
+         **************-->
         <header class="top-nav">
             <div class="top-nav-inner">
                 <div class="nav-header">
@@ -64,10 +67,10 @@
                                 <li class="user-avatar">
                                     <img src="~/Template/images/profile/profile1.jpg" alt="" class="img-circle">
                                     <div class="user-content">
-                                        <h5 class="no-m-bottom">Jane Doe</h5>
+                                        <h5 class="no-m-bottom">@User.Identity.Name</h5>
                                         <div class="m-top-xs">
                                             <a href="~/Template/profile.html" class="m-right-sm">Profile</a>
-                                            <a href="~/Template/signin.html">Log out</a>
+                                            <a href="@Url.Action("LogOff")">Log out</a>
                                         </div>
                                     </div>
                                 </li>
@@ -83,12 +86,6 @@
                                         <span class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
                                     </a>
                                 </li>
-                                @*<li>
-                                    <a href="~/Template/#" class="sidebarRight-toggle">
-                                        Message
-                                        <span class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
-                                    </a>
-                                </li>*@
                                 <li class="divider"></li>
                                 <li>
                                     <a href="~/Template/#">Setting</a>
@@ -97,174 +94,50 @@
                         </li>
                     </ul>
 
-                    <a href="~/Template/index.html" class="brand">
-                        <i class="fa fa-database"></i><span class="brand-name">Johntna Mcphaul</span>
+                    <a href="@Url.Action("Index", "Home")" class="brand">
+                        <strong><span class="text-success">Semper Fi </span>BugTracker</strong>
                     </a>
                 </div>
                 <div class="nav-container">
-                    <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleLG">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <ul class="nav-notification">
-                        <li class="search-list">
-                            <div class="search-input-wrapper">
-                                <div class="search-input">
-                                    <input type="text" class="form-control input-sm inline-block">
-                                    <a href="~/Template/#" class="input-icon text-normal"><i class="ion-ios7-search-strong"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
                     <div class="pull-right m-right-sm">
-                        <div class="user-block hidden-xs">
-                            <a href="~/Template/#" id="userToggle" data-toggle="dropdown">
-                                <img src="~/Template/images/profile/profile1.jpg" alt="" class="img-circle inline-block user-profile-pic">
-                                <div class="user-detail inline-block">
-                                    Jane Doe
-                                    <i class="fa fa-angle-down"></i>
-                                </div>
-                            </a>
-                            <div class="panel border dropdown-menu user-panel">
-                                <div class="panel-body paddingTB-sm">
-                                    <ul>
-                                        <li>
-                                            <a href="~/Template/profile.html">
-                                                <i class="fa fa-edit fa-lg"></i><span class="m-left-xs">My Profile</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="~/Template/inbox.html">
-                                                <i class="fa fa-inbox fa-lg"></i><span class="m-left-xs">Inboxes</span>
-                                                <span class="badge badge-danger bounceIn animation-delay3">2</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="~/Template/signin.html">
-                                                <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">Sign out</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div class="user-block hidden-xs">
+                                <a href="~/Template/#" id="userToggle" data-toggle="dropdown">
+                                    <img src="~/Template/images/profile/profile1.jpg" alt="" class="img-circle inline-block user-profile-pic">
+                                    <div class="user-detail inline-block">
+                                        @User.Identity.Name
+                                        <i class="fa fa-angle-down"></i>
+                                    </div>
+                                </a>
+                                <div class="panel border dropdown-menu user-panel">
+                                    <div class="panel-body paddingTB-sm">
+                                        <ul>
+                                            <li>
+                                                <a href="@Url.Action("Profile", "Home")">
+                                                    <i class="fa fa-edit fa-lg"></i><span class="m-left-xs">My Profile</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("LogOff", "Account")">
+                                                    <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">Sign out</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                         <ul class="nav-notification">
                             <li>
-                                <a href="~/Template/#" data-toggle="dropdown"><i class="fa fa-envelope fa-lg"></i></a>
-                                <span class="badge badge-purple bounceIn animation-delay5 active">2</span>
-                                <ul class="dropdown-menu message pull-right">
-                                    <li><a>You have 4 new unread messages</a></li>
-                                    <li>
-                                        <a class="clearfix" href="~/Template/#">
-                                            <img src="~/Template/images/profile/profile2.jpg" alt="User Avatar">
-                                            <div class="detail">
-                                                <strong>John Doe</strong>
-                                                <p class="no-margin">
-                                                    Lorem ipsum dolor sit amet...
-                                                </p>
-                                                <small class="text-muted"><i class="fa fa-check text-success"></i> 27m ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="clearfix" href="~/Template/#">
-                                            <img src="~/Template/images/profile/profile3.jpg" alt="User Avatar">
-                                            <div class="detail">
-                                                <strong>Jane Doe</strong>
-                                                <p class="no-margin">
-                                                    Lorem ipsum dolor sit amet...
-                                                </p>
-                                                <small class="text-muted"><i class="fa fa-check text-success"></i> 5hr ago</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="clearfix" href="~/Template/#">
-                                            <img src="~/Template/images/profile/profile4.jpg" alt="User Avatar">
-                                            <div class="detail m-left-sm">
-                                                <strong>Bill Doe</strong>
-                                                <p class="no-margin">
-                                                    Lorem ipsum dolor sit amet...
-                                                </p>
-                                                <small class="text-muted"><i class="fa fa-reply"></i> Yesterday</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="clearfix" href="~/Template/#">
-                                            <img src="~/Template/images/profile/profile5.jpg" alt="User Avatar">
-                                            <div class="detail">
-                                                <strong>Baby Doe</strong>
-                                                <p class="no-margin">
-                                                    Lorem ipsum dolor sit amet...
-                                                </p>
-                                                <small class="text-muted"><i class="fa fa-reply"></i> 9 Feb 2013</small>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li><a href="~/Template/#">View all messages</a></li>
-                                </ul>
-                            </li>
-                            <li>
+
                                 <a href="~/Template/#" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
-                                <span class="badge badge-info bounceIn animation-delay6 active">4</span>
+                                <span class="badge badge-info bounceIn animation-delay6 active">@Notification.GetMyNotifications()</span>
                                 <ul class="dropdown-menu notification dropdown-3 pull-right">
-                                    <li><a href="~/Template/#">You have 5 new notifications</a></li>
-                                    <li>
-                                        <a href="~/Template/#">
-                                            <span class="notification-icon bg-warning">
-                                                <i class="fa fa-warning"></i>
-                                            </span>
-                                            <span class="m-left-xs">Server #2 not responding.</span>
-                                            <span class="time text-muted">Just now</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="~/Template/#">
-                                            <span class="notification-icon bg-success">
-                                                <i class="fa fa-plus"></i>
-                                            </span>
-                                            <span class="m-left-xs">New user registration.</span>
-                                            <span class="time text-muted">2m ago</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="~/Template/#">
-                                            <span class="notification-icon bg-danger">
-                                                <i class="fa fa-bolt"></i>
-                                            </span>
-                                            <span class="m-left-xs">Application error.</span>
-                                            <span class="time text-muted">5m ago</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="~/Template/#">
-                                            <span class="notification-icon bg-success">
-                                                <i class="fa fa-usd"></i>
-                                            </span>
-                                            <span class="m-left-xs">2 items sold.</span>
-                                            <span class="time text-muted">1hr ago</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="~/Template/#">
-                                            <span class="notification-icon bg-success">
-                                                <i class="fa fa-plus"></i>
-                                            </span>
-                                            <span class="m-left-xs">New user registration.</span>
-                                            <span class="time text-muted">1hr ago</span>
-                                        </a>
-                                    </li>
+                                    <li><a href="~/Template/#">You have @Notification.GetMyNotifications() new notifications</a></li>
+                                    <li><span class="m-left-xs">@Html.Action("_TicketNotifications", "Tickets")</span></li>
                                     <li><a href="~/Template/#">View all notifications</a></li>
                                 </ul>
-                            </li>
-                            <li class="chat-notification">
-                                <a href="~/Template/#" class="sidebarRight-toggle"><i class="fa fa-comments fa-lg"></i></a>
-                                <span class="badge badge-danger bounceIn">1</span>
-                                <div class="chat-alert">
-                                    Hello, Are you there?
-                                </div>
                             </li>
                         </ul>
                     </div>
@@ -274,17 +147,13 @@
         </header>
     </div>
     <!--- **************
-    *******************
     End Of Top Nav Menu
-    ******************
     **************-->
 
+    <!--- **************
+     Left Sidebar Menu
+     **************-->
 
-   <!--- **************
-    *******************
-    Left Sidebar Menu
-    ******************
-    **************-->
     <aside class="sidebar-menu fixed">
         <div class="sidebar-inner scrollable-sidebar">
             <div class="main-menu">
@@ -293,32 +162,46 @@
                         Main Menu
                     </li>
                     <li class="bg-palette1 active">
-                        <a href="~/Template/index.html">
+                        <a href="@Url.Action("Index","Home")">
                             <span class="menu-content block">
                                 <span class="menu-icon"><i class="block fa fa-home fa-lg"></i></span>
-                                <span class="text m-left-sm">Dashboard</span>
+                                <span class="text m-left-sm">Home</span>
                             </span>
                             <span class="menu-content-hover block">
                                 Home
                             </span>
                         </a>
                     </li>
-                    <li class="bg-palette2">
-                        <a href="@Url.Action("Index","Home")">
-                            <span class="menu-content block">
-                                <span class="menu-icon"><i class="block fa fa-desktop fa-lg"></i></span>
-                                <span class="text m-left-sm">Landing</span>
-                            </span>
-                            <span class="menu-content-hover block">
-                                Landing
-                            </span>
-                        </a>
-                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+
+                        <li class="openable bg-palette4">
+                            <a href="#">
+                                <span class="menu-content block">
+                                    <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+                                    <span class="text m-left-sm">User Menu</span>
+                                    <span class="submenu-icon"></span>
+                                </span>
+                                <span class="menu-content-hover block">
+                                    Menu
+                                </span>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="@Url.Action("Roles", "Admin" )"><span class="submenu-label">Assign Roles</span></a></li>
+                                <li class="openable">
+                                    <a href="signin.html">
+                                        <span class="submenu-label">Profile</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    }
                     <li class="openable bg-palette3">
                         <a href="~/Template/#">
                             <span class="menu-content block">
                                 <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
-                                <span class="text m-left-sm">Recruit</span>
+                                <span class="text m-left-sm">Recruit Projects</span>
                                 <span class="submenu-icon"></span>
                             </span>
                             <span class="menu-content-hover block">
@@ -326,17 +209,15 @@
                             </span>
                         </a>
                         <ul class="submenu bg-palette4">
-                            <li><a href="@Url.Action("Index", "Projects")"><span class="submenu-label">Projects</span></a></li>
-                            <li><a href="@Url.Action("ProjectView","Projects")"><span class="submenu-label">Assign Projects</span></a></li>
-                            <li><a href="~/Template/form_wizard.html"><span class="submenu-label">Form Wizard</span></a></li>
-                            <li><a href="~/Template/dropzone.html"><span class="submenu-label">Dropzone</span></a></li>
+                            <li><a href="@Url.Action("Index", "Projects" )"><span class="submenu-label">Projects</span></a></li>
+                            @*<li><a href="@Url.Action("ProjectView","Projects")"><span class="submenu-label">Assign Projects</span></a></li>*@
                         </ul>
                     </li>
                     <li class="openable bg-palette4">
                         <a href="~/Template/#">
                             <span class="menu-content block">
-                                <span class="menu-icon"><i class="block fa fa-tags fa-lg"></i></span>
-                                <span class="text m-left-sm">UI Elements</span>
+                                <span class="menu-icon"><i class="block fa fa-list fa-lg"></i></span>
+                                <span class="text m-left-sm">Recruit Tickets </span>
                                 <span class="submenu-icon"></span>
                             </span>
                             <span class="menu-content-hover block">
@@ -344,84 +225,33 @@
                             </span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="~/Template/ui_element.html"><span class="submenu-label">Basic Elements</span></a></li>
-                            <li><a href="~/Template/button.html"><span class="submenu-label">Button & Icons</span></a></li>
-                            <li class="openable">
-                                <a href="~/Template/#">
-                                    <small class="badge badge-success badge-square bounceIn animation-delay2 m-left-xs pull-right">2</small>
-                                    <span class="submenu-label">Tables</span>
-                                </a>
-                                <ul class="submenu third-level">
-                                    <li><a href="~/Template/static_table.html"><span class="submenu-label">Static Table</span></a></li>
-                                    <li><a href="~/Template/datatable.html"><span class="submenu-label">DataTables</span></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="~/Template/widget.html"><span class="submenu-label">Widget</span></a></li>
-                            <li><a href="~/Template/tab.html"><span class="submenu-label">Tab</span></a></li>
-                            <li><a href="~/Template/calendar.html"><span class="submenu-label">Calendar</span></a></li>
-                            <li><a href="~/Template/treeview.html"><span class="submenu-label">Treeview</span></a></li>
-                            <li><a href="~/Template/nestable_list.html"><span class="submenu-label">Nestable Lists</span></a></li>
+                            <li><a href="@Url.Action("Index", "Tickets" )"><span class="submenu-label">All Tickets</span></a></li>
+                            <li><a href="@Url.Action("IndexAssign", "Tickets" )"><span class="submenu-label">Assign Tickets</span></a></li>
                         </ul>
-                    </li>
-                    <li class="bg-palette2">
-                        <a href="~/Template/timeline.html">
-                            <span class="menu-content block">
-                                <span class="menu-icon"><i class="block fa fa-clock-o fa-lg"></i></span>
-                                <span class="text m-left-sm">Timeline</span>
-                                <small class="badge badge-warning badge-square bounceIn animation-delay6 m-left-xs pull-right">7</small>
-                            </span>
-                            <span class="menu-content-hover block">
-                                Timeline
-                            </span>
-                        </a>
-                    </li>
-                    <li class="menu-header">
-                        Others
-                    </li>
-                    <li class="openable bg-palette3">
-                        <a href="~/Template/#">
-                            <span class="menu-content block">
-                                <span class="menu-icon"><i class="block fa fa-gift fa-lg"></i></span>
-                                <span class="text m-left-sm">Extra Pages</span>
-                                <span class="submenu-icon"></span>
-                            </span>
-                            <span class="menu-content-hover block">
-                                Pages
-                            </span>
-                        </a>
                     </li>
                 </ul>
             </div>
-        </div> sidebar-inner 
+        </div>
     </aside>
     <!--- **************
-    *******************
-   End Left Sidebar Menu
-    ******************
-    **************-->
-
+    End Left Sidebar Menu
+     **************-->
 
     <!--- **************
-    *******************
     Render Body
-    ******************
     **************-->
-
     <div class="main-container">
-        <div class="padding">
-    @RenderBody()
+        <div class="padding-md">
+            @RenderBody()
         </div>
     </div>
     <!--- **************
-    *******************
     Render Body
-    ******************
     **************-->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
     <!-- Jquery -->
     <script src="~/Template/js/jquery-1.11.1.min.js"></script>
 
@@ -437,7 +267,7 @@
 
     <!-- Slimscroll -->
     <script src='~/Template/js/jquery.slimscroll.min.js'></script>
-    
+
     <!-- Morris -->
     <script src='~/Template/js/rapheal.min.js'></script>
     <script src='~/Template/js/morris.min.js'></script>
@@ -446,11 +276,11 @@
     <!-- Sparkline -->
     <script src='~/Template/js/sparkline.min.js'></script>
     <!-- Skycons -->
-   <script src='~/Template/js/uncompressed/skycons.js'></script>
+    <script src='~/Template/js/uncompressed/skycons.js'></script>
 
     <!-- Popup Overlay -->
     <script src='~/Template/js/jquery.popupoverlay.min.js'></script>
-   
+
     <!-- Sortable -->
     <script src='~/Template/js/uncompressed/jquery.sortable.js'></script>
     <!-- Owl Carousel -->
@@ -458,13 +288,13 @@
     <!-- Modernizr -->
     <script src='~/Template/js/modernizr.min.js'></script>
 
-  
 
-   <!--Simplify -->
+
+    <!--Simplify -->
     <script src="~/Template/js/simplify/simplify.js"></script>
     @*<script src="~/Template/js/simplify/simplify_dashboard.js"></script>*@
-    
-  
+
+
 
 
     @RenderSection("scripts", required: false)

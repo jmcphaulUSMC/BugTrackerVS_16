@@ -14,7 +14,7 @@ namespace BugTrackerVS_16.Controllers
         //GET: Users/UserRoles
         public ActionResult Roles()
         {
-            if (User.IsInRole("ProjectManager"))
+            if (User.IsInRole("Admin"))
             {
                 List<RoleViewModel> userList = new List<RoleViewModel>();//<=== Right here I Created an instance of my userViewModel which is a class in my Model called "UserViewModel" and I'm putting into a list 
                 foreach (var user in db.Users.ToList())//Right here using a for each loop to cycle through Users in the database and put them in a list 

@@ -87,8 +87,16 @@ namespace BugTrackerVS_16.Models.User_Roles
                         Subject = "The assigned developer to ticket:" + originalTicket.Title + " has changed.",
                         Body = "The assigned developer for this ticket has changed. The new developer is " + DetermineAssignedUserName(model) + "."
                     };
-
                     ownerMailer.Send(ownerNotification);
+
+                    db.TicketNotifications.Add
+                        (new TicketNotifications {
+                        Message ="You have been assigned to ticket " + originalTicket.Title,
+                        EnteredById = HttpContext.Current.User.Identity.GetUserId(),
+                        MessageForId = model.AssignedToUserId,
+                        TicketId = originalTicket.Id
+                    });
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -132,6 +140,7 @@ namespace BugTrackerVS_16.Models.User_Roles
                 Changed = DateTime.Now
                 };
                 db.TicketHistories.Add(history);
+                db.SaveChanges();
             }
             //Check Status
             if (originalTicket.TicketStatusId != model.TicketStatusId)
@@ -146,6 +155,7 @@ namespace BugTrackerVS_16.Models.User_Roles
                     Changed = DateTime.Now
                 };
                 db.TicketHistories.Add(history);
+                db.SaveChanges();
             }
             //Check Assigned User
             if (originalTicket.AssignedToUserId != model.AssignedToUserId)
@@ -160,6 +170,22 @@ namespace BugTrackerVS_16.Models.User_Roles
                 history.Changed = DateTime.Now;
 
                 db.TicketHistories.Add(history);
+                db.SaveChanges();
+            }
+            //check Title
+            if (originalTicket.Title != model.Title)
+            {
+                var history = new TicketHistories();
+
+                history.Property = "Title";
+                history.Oldvalue = DetermineAssignedUserName(originalTicket);
+                history.NewValue = DetermineAssignedUserName(model);
+                history.TicketId = originalTicket.Id;
+                history.UserId = HttpContext.Current.User.Identity.GetUserId();
+                history.Changed = DateTime.Now;
+
+                db.TicketHistories.Add(history);
+                db.SaveChanges();
             }
         }
 

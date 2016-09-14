@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BugTrackerVS_16.Models.Tickets>
+
+@{ 
+    Layout = null;
+}
+    @*@foreach (var user in Model)
+    {*@
+
+
+<div class="user-detail small-img">
+        <div class="font-16">@ViewData["Users"] =</div>
+        <small class="block text-muted font-12">@User.Identity.Name</small>
+        <small>
+            <small class="freelancer-rating">
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+                <i class="fa fa-star text-warning"></i>
+            </small>
+        </small>
+        <div class="m-top-sm">
+            <button type="button" class="btn btn-default btn-sm marginTB-xs" disabled="" data-toggle="modal">following</button>
+            <button type="button" class="btn btn-success btn-sm marginTB-xs" data-toggle="modal">View Profile</button>
+        </div>
+    </div>
+    @*}*@

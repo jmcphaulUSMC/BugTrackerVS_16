@@ -8,6 +8,7 @@ using BugTrackerVS_16.Models;
 using BugTrackerVS_16.Models.User_Roles;
 using System.Web.Security;
 using Microsoft.AspNet.Identity;
+using System;
 
 namespace BugTrackerVS_16.Controllers
 {
@@ -73,7 +74,7 @@ namespace BugTrackerVS_16.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                projects.Created = DateTime.Now;
                 db.Projects.Add(projects);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -127,19 +128,26 @@ namespace BugTrackerVS_16.Controllers
     [ValidateAntiForgeryToken]
     public ActionResult AssignUsers(AssignUserToProjectViewModel model)
     {
-
-            foreach (var roles in db.Roles.Select(r => r.Name).ToList())
+            if (model != null)//check that the model isn't null
             {
-                    pjHelper.RemoveUserFromProject(roles, model.Id);
+                var project = db.Projects.Find(model.Id);//get the project that your currently assigning/removing users to/from
+                if (project != null)//check that the project isn't null
+                {
+                    project.Users.Clear();//remove all users from the project
+                    ApplicationUser user = new ApplicationUser();//create an instance of the ApplicationUser class
+                    foreach (var userId in model.SelectedUsers)//loop through all users that are included in the 'SelectedUsers' collection
+                    {
+                        user = db.Users.Find(userId);//get the user by their 'Id' property
+                        project.Users.Add(user);//add the user to the project, thus assigning the user to the project
+                    }
+                    db.SaveChanges();//save changes made to the database
+
+                    return RedirectToAction("Index", "Projects");//I am assuming that you'll want to return to a list view of projects but you may want to change this to redirect to the details view for this project or redirect back to the view where you are assigning/removing users to/from this project....whatever you want to do
+                }
             }
 
-            foreach (var assinRoles in model.SelectedUsers)
-            {
-                pjHelper.AddUserToProject(assinRoles, model.Id);
-            }
-
-        return RedirectToAction("Index", "Projects");
-    }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);//if the model is null or the project is null return a BadRequest error
+        }
 
 
         [Authorize]
@@ -167,6 +175,7 @@ namespace BugTrackerVS_16.Controllers
         {
             if (ModelState.IsValid)
             {
+                projects.Updated = DateTime.Now;
                 db.Entry(projects).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

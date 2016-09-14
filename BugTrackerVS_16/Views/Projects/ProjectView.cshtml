@@ -6,13 +6,17 @@
 <h2>Project Assigned to</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a href="@Url.Action("Create","Tickets")" class="btn btn-success">Create New</a>
 </p>
 <table class="table">
     <tr>
         <th>
+            Projects
+        </th>
+        <th>
             @Html.DisplayName("User")
         </th>
+
 
     </tr>
 
@@ -21,12 +25,11 @@
 
         <tr>
             <td>
-                    @view.projects.Name
-
+                @view.projects.Name
             </td>
 
             <td>
-               <p>@Html.ActionLink("Index", "Projects")" > Home</p>
+                @view.
             </td>
         </tr>
 

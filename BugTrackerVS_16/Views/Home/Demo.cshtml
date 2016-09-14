@@ -1,0 +1,303 @@
+﻿@{ 
+    Layout = null;
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<!--
+#######################################
+    - THE HEAD PART -
+######################################
+-->
+<head>
+    <meta charset="utf-8">
+    <title>Semper Fi Bugtracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="~/Template/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Template/css/font-awesome.min.css" rel="stylesheet">
+    <!-- ionicons -->
+    <link href="~/Template/css/ionicons.min.css" rel="stylesheet">
+
+    <!-- Owl -->
+    <link href="~/Template/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Template/css/owl.theme.default.min.css" rel="stylesheet">
+
+    <!-- Revolution Slider -->
+    @Styles.Render("~/Template/landing/css/style.css")
+    @Styles.Render("~/Template/landing/rs-plugin/css/settings.css")
+    @Styles.Render("~/Template/landing/css/extralayers.css")
+    <!-- Simplify -->
+    <link href="~/Template/css/simplify.css" rel="stylesheet">
+</head>
+<!--
+#######################################
+    - THE BODY PART -
+######################################
+-->
+<body>
+    <div class="wrapper front-end-wrapper">
+        <header class="navbar front-end-navbar" data-spy="affix" data-offset-top="1">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index","Home")" class="navbar-brand"><strong><span class="text-success">Semper Fi </span>BugTracker</strong></a>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="@Url.Action("Index","Home")">Home</a>
+                        </li>
+                        <li class="active">
+                            <a href="@Url.Action("Demo","Home")">Demo</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="btn-link"><a href="@Url.Action("Login", "Account")" class="btn btn-sm btn-success">Login</a></li>
+                        <li class="btn-link"><a href="@Url.Action("Register", "Account")" class="btn btn-sm btn-purple">Register</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+        <div class="section bg-grey section-padding" id="pricingSection">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="text-upper">Demo Roles</h2>
+                    <h3>Try it Now !</h3>
+                </div>
+                <div class="row m-top-lg">
+                <!--Demo Admin-->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="pricing-widget clean-pricing bounceIn animation-element disabled">
+                            <div class="pricing-type bg-info text-center">Adminstrator</div>
+                            <div class="pricing-value bg-grey">
+                                <span class="value">Extensions</span>
+                                
+                            </div>
+                            <ul class="pricing-service m-top-sm">
+                                <li>Assign<span class="font-semi-bold">Users</span></li>
+                                <li>Manage <span class="font-semi-bold">Users</span></li>
+                                <li>Assign <span class="font-semi-bold">Tickets</span></li>
+                                <li>Create <span class="font-semi-bold">Projects</span></li>
+                                <li>View <span class="font-semi-bold">Projects</span></li>
+                                <li>Submit<span class="font-semi-bold">Tickets</span></li>
+                                <li>View <span class="font-semi-bold">Tickets</span></li>
+                                <li>Edit <span class="font-semi-bold">Tickets</span></li>
+                            </ul>
+                            <div class="m-top-md m-bottom-md text-center">
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-info">Log In</a>
+                            </div>
+                        </div><!-- ./pricing-widget -->
+                    </div><!-- .col -->
+                    <!--Demo Project Manager-->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="pricing-widget clean-pricing bounceIn animation-element disabled animation-delay2">
+                            <div class="pricing-type bg-danger text-center">Project Manager</div>
+                            <div class="pricing-value bg-grey">
+                                <span class="value">Outlook</span>
+                            </div>
+
+                            <ul class="pricing-service m-top-sm">
+                                <li>Assign <span class="font-semi-bold">Tickets</span></li>
+                                <li>Create <span class="font-semi-bold">Projects</span></li>
+                                <li>View <span class="font-semi-bold">Projects</span></li>
+                                <li>Submit<span class="font-semi-bold">Tickets</span></li>
+                                <li>View <span class="font-semi-bold">Tickets</span></li>
+                                <li>Edit <span class="font-semi-bold">Tickets</span></li>
+                            </ul>
+                            <div class="m-top-md m-bottom-md text-center">
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-danger">Log In</a>
+                            </div>
+                        </div><!-- ./pricing-widget -->
+                    </div><!-- .col -->
+                    <!--Demo Developer-->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="pricing-widget clean-pricing bounceIn animation-element disabled animation-delay4">
+                            <div class="pricing-type bg-purple text-center">Developer</div>
+                            <div class="pricing-value bg-grey">
+                                <span class="value">Radius</span>
+                            </div>
+
+                            <ul class="pricing-service m-top-sm">
+                                <li>View <span class="font-semi-bold">Projects</span></li>
+                                <li>Submit<span class="font-semi-bold">Tickets</span></li>
+                                <li>View <span class="font-semi-bold">Tickets</span></li>
+                                <li>Edit <span class="font-semi-bold">Tickets</span></li>
+                            </ul>
+                            <div class="m-top-md m-bottom-md text-center">
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-purple">Log In</a>
+                            </div>
+                        </div><!-- ./pricing-widget -->
+                    </div><!-- .col -->
+                    <!--Demo Submitter-->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="pricing-widget clean-pricing bounceIn animation-element disabled animation-delay6">
+                            <div class="pricing-type bg-success text-center">Submitter</div>
+                            <div class="pricing-value bg-grey">
+                                <span class="value">OutLook</span>
+                            </div>
+
+                            <ul class="pricing-service m-top-sm">
+                                <li>Submit <span class="font-semi-bold">Tickets</span></li>
+                                <li>View <span class="font-semi-bold">Tickets</span></li>
+                                <li>View <span class="font-semi-bold">Projects</span></li>
+                            </ul>
+                            <div class="m-top-md m-bottom-md text-center">
+                                <a href="@Url.Action("Login", "Account")" class="btn btn-success">Log In</a>
+                            </div>
+                        </div><!-- ./pricing-widget -->
+                    </div><!-- .col -->
+                </div><!-- ./row -->
+            </div><!-- ./container -->
+        </div><!-- section -->
+      
+        <a href="#" class="scroll-to-top hidden-print"><i class="fa fa-chevron-up fa-lg"></i></a>
+    </div><!-- /wrapper -->
+    <!-- Jquery -->
+    @Scripts.Render("~/Template/js/jquery-1.11.1.min.js")
+   
+    <!-- Bootstrap -->
+    <script src="~/Template/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Modernizr -->
+    <script src="~/Template/js/modernizr.min.js"></script>
+    <!-- Owl -->
+    <script src="~/Template/js/owl.carousel.min.js"></script>
+    <!-- Waypoint -->
+    <script src="~/Template/js/waypoints.min.js"></script>
+    <!-- ScrollTo -->
+    <script src="~/Template/js/jquery.scrollTo.min.js"></script>
+    <!-- Local Scroll -->
+    <script src="~/Template/js/jquery.localScroll.min.js"></script>
+    <!-- Revolution Slider -->
+    <script src="~/Template/landing/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+   <script src="~/Template/landing/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
+    <script type="text/javascript">
+
+		jQuery(document).ready(function() {
+			//Slider Revolution
+			jQuery('.tp-banner').show().revolution(
+			{
+				dottedOverlay:"none",
+				delay:16000,
+				startwidth:1170,
+				startheight:700,
+				hideThumbs:200,
+
+				thumbWidth:100,
+				thumbHeight:50,
+				thumbAmount:5,
+
+				navigationType:"bullet",
+				navigationArrows:"solo",
+				navigationStyle:"preview4",
+
+				touchenabled:"on",
+				onHoverStop:"on",
+
+				swipe_velocity: 0.7,
+				swipe_min_touches: 1,
+				swipe_max_touches: 1,
+				drag_block_vertical: false,
+
+										parallax:"mouse",
+				parallaxBgFreeze:"on",
+				parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
+
+				keyboardNavigation:"off",
+
+				navigationStyle: "preview2",
+				navigationHAlign:"center",
+				navigationVAlign:"middle",
+				navigationHOffset:0,
+				navigationVOffset:20,
+
+				soloArrowLeftHalign:"left",
+				soloArrowLeftValign:"center",
+				soloArrowLeftHOffset:20,
+				soloArrowLeftVOffset:0,
+
+				soloArrowRightHalign:"right",
+				soloArrowRightValign:"center",
+				soloArrowRightHOffset:20,
+				soloArrowRightVOffset:0,
+
+				shadow:0,
+				fullWidth:"on",
+				fullScreen:"off",
+
+				spinner:"spinner4",
+
+				stopLoop:"off",
+				stopAfterLoops:-1,
+				stopAtSlide:-1,
+
+				shuffle:"off",
+
+				autoHeight:"off",
+				forceFullWidth:"off",
+
+				hideThumbsOnMobile:"off",
+				hideNavDelayOnMobile:1500,
+				hideBulletsOnMobile:"off",
+				hideArrowsOnMobile:"off",
+				hideThumbsUnderResolution:0,
+
+				hideSliderAtLimit:0,
+				hideCaptionAtLimit:0,
+				hideAllCaptionAtLilmit:0,
+				startWithSlide:0,
+				fullScreenOffsetContainer: ".header"
+			});
+			//End Slider Revolution
+
+			//Section Animation
+			if (Modernizr.mq('(min-width: 1349px)')) {
+				$('.animation-element').waypoint(function() {
+						$(this).removeClass('disabled');
+				}, { offset: 700 });
+			}
+			else if (Modernizr.mq('(min-width: 992px)') && Modernizr.mq('(max-width: 1349px)')) {
+				$('.animation-element').waypoint(function() {
+						$(this).removeClass('disabled');
+				}, { offset: 550 });
+			}
+			else	{
+				$('.animation-element').removeClass('disabled');
+			}
+
+			//Testimonial carousel
+			$('.owl-carousel').owlCarousel({
+			    loop:true,
+			    margin:10,
+			    nav:false,
+			    items:1,
+			    autoplay:true,
+			    autoplayTimeout:2500,
+			    autoplayHoverPause:true,
+			    smartSpeed:500
+			});
+
+			//Scrollto section
+	        $('.front-end-wrapper .navbar-collapse .navbar-nav').localScroll({
+	          duration:800,
+	          offset: -100
+	        });
+		});
+
+    </script>
+
+</body>
+</html>

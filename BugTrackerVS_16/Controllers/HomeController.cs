@@ -17,6 +17,17 @@ namespace BugTrackerVS_16.Controllers
             return View();
         }
 
+        public ActionResult Demo()
+        {
+
+            return View();
+        }
+
+        public ActionResult Profile()
+        {
+
+            return View();
+        }
 
         public ActionResult About()
         {

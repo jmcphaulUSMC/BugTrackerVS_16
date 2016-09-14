@@ -224,6 +224,7 @@
     <Compile Include="Controllers\TicketAttachmentsController.cs" />
     <Compile Include="Controllers\TicketCommentsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
+    <Compile Include="Extensions\HelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,6 +270,25 @@
     <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Js\jquery.multi-select.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\.gitignore" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\css\multi-select.css" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\css\multi-select.dev.css" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\css\multi-select.dist.css" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\Gruntfile.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\img\switch.png" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\js\jquery.multi-select.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\LICENSE.txt" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\samples\callbacks.html" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\samples\index.html" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\samples\Pre-selected-options.html" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\lib\jasmine-1.2.0\jasmine-html.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\lib\jasmine-1.2.0\jasmine.css" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\lib\jasmine-1.2.0\jasmine.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\lib\jasmine-jquery.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\SpecRunner.html" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\spec\multiSelectSpec.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\spec\SpecHelper.js" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\src\jquery.js" />
     <Content Include="Template\blank.html" />
     <Content Include="Template\blog.html" />
     <Content Include="Template\bootstrap\css\bootstrap.css" />
@@ -317,6 +337,7 @@
     <Content Include="Template\css\select2\select2.png" />
     <Content Include="Template\css\select2\select2x2.png" />
     <Content Include="Template\css\simplify.css" />
+    <Content Include="Template\css\simplifyB.min.css" />
     <Content Include="Template\css\simplify.min.css" />
     <Content Include="Template\datatable.html" />
     <Content Include="Template\dropzone.html" />
@@ -361,6 +382,11 @@
     <Content Include="Template\images\img7.jpg" />
     <Content Include="Template\images\img8.jpg" />
     <Content Include="Template\images\img9.jpg" />
+    <Content Include="Template\images\NewBanner2.jpg" />
+    <Content Include="Template\images\NewBanner3.jpg" />
+    <Content Include="Template\images\NewBanner4.jpg" />
+    <Content Include="Template\images\NewBanner5.jpg" />
+    <Content Include="Template\images\NewBanner6.jpg" />
     <Content Include="Template\images\profile\profile1.jpg" />
     <Content Include="Template\images\profile\profile2.jpg" />
     <Content Include="Template\images\profile\profile3.jpg" />
@@ -636,6 +662,7 @@
     </Content>
     <Content Include="private.config" />
     <Content Include="Js\multi-select.dev.css.map" />
+    <None Include="Properties\PublishProfiles\jmcphaulUSMC-bugtracker.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -713,7 +740,7 @@
     <Content Include="Views\Shared\_IndexComments.cshtml" />
     <Content Include="Views\Shared\_IndexAttachment.cshtml" />
     <Content Include="Views\Tickets\IndexAssign.cshtml" />
-    <Content Include="Views\Projects\_IndexProjects.cshtml" />
+    <Content Include="Views\Shared\_IndexProjects.cshtml" />
     <Content Include="Views\Shared\_IndexHistories.cshtml" />
     <Content Include="Views\Shared\_NewLayout.cshtml" />
     <Content Include="Views\Tickets\_ViewStart.cshtml" />
@@ -777,9 +804,27 @@
     <Content Include="Template\images\marine-recruiting-3.jpg.xcf" />
     <Content Include="Views\Shared\_BNewLayout.cshtml" />
     <Content Include="Views\Shared\_CNewLayout.cshtml" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\bower.json" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\css\multi-select.dev.css.map" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\multi-select.jquery.json" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\package.json" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\README.markdown" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\scss\multi-select.scss" />
+    <Content Include="Scripts\lou-multi-select-a0f48de\test\lib\jasmine-1.2.0\MIT.LICENSE" />
+    <Content Include="Views\Home\Demo.cshtml" />
+    <Content Include="Views\Shared\_DNewLayout.cshtml" />
+    <Content Include="Views\Projects\IndexProjects .cshtml" />
+    <Content Include="Views\Shared\_ProjectTotals.cshtml" />
+    <Content Include="Views\Shared\_TicketTotals.cshtml" />
+    <Content Include="Views\Shared\_HighTotals.cshtml" />
+    <Content Include="Views\Shared\_NewTotals.cshtml" />
+    <Content Include="Views\Shared\_TicketNotifications.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Shared\_DataProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

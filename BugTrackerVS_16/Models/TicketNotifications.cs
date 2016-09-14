@@ -9,10 +9,14 @@ namespace BugTrackerVS_16.Models
     {
         public int Id { get; set; }
         public int TicketId { get; set; }
-        public string UserId { get; set; }
-        
+        public string EnteredById { get; set; }
+        public string Message { get; set; }
+        public string MessageForId { get; set; }
+        public bool HasBeenRead { get; set; }
+
         //Creates the one to one relationship with UserId 
-        public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser EnteredBy { get; set; }
+        public virtual ApplicationUser MessageFor { get; set; }
 
         //Creates the one to one relationship with TicketID
         public virtual Tickets Ticket { get; set; }
