@@ -39,16 +39,16 @@
                             Remember me
                         </div>
                         <div class="m-top-md p-top-sm">
-                            <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                            <button type="submit" class="btn btn-default btn-block">Sign in</button>
                         </div>
-                    }
+                    }     
 
                     <div class="m-top-md p-top-sm">
                         <div class="font-12 text-center m-bottom-xs">
                             <a href="@Url.Action("ForgotPassword", "Account")" class="font-12">Forgot password ?</a>
                         </div>
                         <div class="font-12 text-center m-bottom-xs">Do not have an account?</div>
-                        <a href="@Url.Action("Register", "Account")" class="btn btn-default block">Registe as a New User</a>
+                        <a href="@Url.Action("Register", "Account")" class="btn btn-warning block">Registe as a New User</a>
                     </div>
 
                         @using (Html.BeginForm("DemoLogin", "Account", new { demo = "Admin@guest.com" }))
@@ -56,7 +56,7 @@
                             @Html.AntiForgeryToken()
                             <div class="m-top-md p-top-sm">
                                 <div class="font-12 text-center m-bottom-xs">Demo Logins</div>
-                                <input type="submit" class="btn btn-warning btn-block" value="Adminstrator"/>
+                                <input type="submit" class="btn btn-info btn-block" value="Adminstrator"/>
                             </div>
                         }
                         @using (Html.BeginForm("DemoLogin", "Account", new { demo = "ProjectManagerr@guest.com" }))
@@ -64,7 +64,7 @@
                         {
                             @Html.AntiForgeryToken()
                             <div class="m-top-md p-top-sm">
-                                <input type="submit" class="btn btn-purple btn-block" value="Project Manager" />
+                                <input type="submit" class="btn btn-danger btn-block" value="Project Manager" />
                             </div>
                         }
                        @using (Html.BeginForm("DemoLogin", "Account", new { demo = "Developer@guest.com" }))
@@ -72,7 +72,7 @@
                        {
                            @Html.AntiForgeryToken()
                            <div class="m-top-md p-top-sm">
-                               <input type="submit" class="btn btn-success btn-block" value="Developer" />
+                               <input type="submit" class="btn btn-purple btn-block" value="Developer" />
                            </div>
                        }
                        @using (Html.BeginForm("DemoLogin", "Account", new { demo = "Submitter@guest.com" }))
@@ -80,7 +80,7 @@
                        {
                            @Html.AntiForgeryToken()
                            <div class="m-top-md p-top-sm">
-                               <input type="submit" class="btn btn-danger btn-block"  value="Submitter" />
+                               <input type="submit" class="btn btn-success btn-block"  value="Submitter" />
                            </div>
                        }
 

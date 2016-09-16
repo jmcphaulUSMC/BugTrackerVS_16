@@ -25,7 +25,9 @@ namespace BugTrackerVS_16.Models
         public string Title { get; set; }
         [AllowHtml]
         public string Description { get; set; }
-        public DateTimeOffset Created { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy hh:mm tt}")]
+        public System.DateTimeOffset Created { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy hh:mm tt}")]
         public DateTimeOffset? Updated { get; set; }
         public int ProjectId { get; set; }
         public int TicketTypeId { get; set; }

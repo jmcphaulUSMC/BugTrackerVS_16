@@ -81,7 +81,7 @@ namespace BugTrackerVS_16.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "Projects");
+                    return RedirectToAction("DashBoard", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -109,8 +109,8 @@ namespace BugTrackerVS_16.Controllers
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        return RedirectToAction("Index", "Projects");
-                    case SignInStatus.LockedOut:
+                        return RedirectToAction("DashBoard", "Home");
+                case SignInStatus.LockedOut:
                         return View("Lockout");
                     case SignInStatus.Failure:
                     default:

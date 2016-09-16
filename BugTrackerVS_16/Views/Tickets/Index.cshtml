@@ -12,13 +12,9 @@
     }
     a.my-class { color: #ffffff }
 </style>
-<p>
+<h2>All Tickets</h2>
+<p style="text-align:right;">
     <a href="@Url.Action("Create","Tickets")" class="btn btn-success">Create New</a>
-
-    @if (User.IsInRole("Admin") || User.IsInRole("ProjectManager") || User.IsInRole("Developer") || User.IsInRole("Submitter"))
-    { 
-        <a href="@Url.Action("IndexAssign", "Tickets")" class="btn btn-info">Assigned Tickets</a>
-    }
 </p>
  <table class="table table-striped table-bordered" id="dataTable">
 
@@ -85,9 +81,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Created)
-                </td>
+                <td>@String.Format("{0:MM/dd/yyyy}", item.Created)</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Updated)
                 </td>

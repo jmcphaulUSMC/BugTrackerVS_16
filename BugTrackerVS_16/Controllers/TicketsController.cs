@@ -70,6 +70,13 @@ namespace BugTrackerVS_16.Controllers
             ViewData["HighPriorityTotals"] = db.Tickets.Where(t => t.TicketStatus.Name == "New").Count();
             return PartialView();
         }
+        // GET: Tickets
+        [Authorize]
+        public ActionResult _DataProfile()
+        {
+            ViewData["Users"] = User.Identity.GetUserName();
+            return PartialView();
+        }
 
         // GET: Tickets
         [Authorize]
@@ -84,13 +91,7 @@ namespace BugTrackerVS_16.Controllers
             return PartialView(notifyMessage.ToList());
         }
 
-        // GET: Tickets
-        [Authorize]
-        public ActionResult _DataProfile()
-        {
-            ViewData["Users"] = User.Identity.GetUserName();
-            return PartialView();
-        }
+
 
         // GET: Project Manager Tickets
         [Authorize]
@@ -135,18 +136,46 @@ namespace BugTrackerVS_16.Controllers
         [Authorize]
         public ActionResult IndexProjects()
         {
-            {
-                var manager = help.UsersInRole("ProjectManager");
-                //var userId = User.Identity.GetUserId();// get the user "Id"
-                ViewBag.CurrentUser = User.Identity.GetUserId();// get the user "Id"
-                ViewBag.ManagerId = new SelectList(manager, "Id", "DisplayName");
 
-                var userId = User.Identity.GetUserId();// get the user "Id"
-                var currentUser = db.Users.Find(userId);//go to the database and find the user by their "id" 
-                var projectTickets = currentUser.Projects.SelectMany(t => t.Tickets);
-                //with the currentUser grab the project assoicated with that user and selectmany tickets for all the projects
-                ViewBag.Project = currentUser.Projects.SelectMany(t => t.Tickets);
-                return View(projectTickets);
+            //var manager = help.UsersInRole("ProjectManager");
+            ////var userId = User.Identity.GetUserId();// get the user "Id"
+            //ViewBag.CurrentUser = User.Identity.GetUserId();// get the user "Id"
+            //ViewBag.ManagerId = new SelectList(manager, "Id", "DisplayName");
+
+            //var userId = User.Identity.GetUserId();// get the user "Id"
+            //var currentUser = db.Users.Find(userId);//go to the database and find the user by their "id" 
+            //var projectTickets = currentUser.Projects.SelectMany(t => t.Tickets);
+            ////with the currentUser grab the project assoicated with that user and selectmany tickets for all the projects
+            //ViewBag.Project = currentUser.Projects.SelectMany(t => t.Tickets);
+
+            //return View(projectTickets);
+            //var userId = User.Identity.GetUserId();// get the user "Id"
+            ViewBag.CurrentUser = User.Identity.GetUserId();// get the user "Id"
+
+            //database look at tickets table and include all Fields in AssignedToUser
+            var ticketsTwo = db.Tickets
+                    .Include(t => t.AssignedToUser)
+                    .Include(t => t.OwnerUser)
+                    .Include(t => t.Project)
+                    .Include(t => t.TicketPriority)
+                    .Include(t => t.TicketStatus)
+                    .Include(t => t.TicketType);
+            return View(ticketsTwo.ToList());
+
+        }
+
+        // GET: Project Manager Tickets
+        [Authorize]
+        public ActionResult IndexTickets(int id)
+        {
+            {
+
+
+                ViewBag.ProjectName = db.Projects.Find(id).Name;
+
+                var projectTickets = db.Projects.Find(id);
+
+                return View(projectTickets.Tickets);
             }
         }
 

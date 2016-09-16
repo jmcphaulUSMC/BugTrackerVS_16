@@ -1,0 +1,81 @@
+﻿@model IList<BugTrackerVS_16.Models.Projects>
+
+<style>
+    a.my-class {
+        color: #ffffff;
+    }
+
+        a.my-class:active {
+            color: #ffffff;
+        }
+
+        a.my-class:link {
+            color: #ffffff;
+        }
+
+        a.my-class:visited {
+            color: #ffffff;
+        }
+</style>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="padding-md">
+    <h2>Recruit Projects</h2>
+  
+    <table class="table table-striped table-bordered" id="dataTable">
+        <thead>
+            <tr>
+                <th>Projects</th>
+                <th>Created</th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>
+
+                        @Html.DisplayName("Members")
+
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody style="border-color:#000000;">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>@String.Format("{0:MM/dd/yyyy}", item.Created)</td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+
+                            @foreach (var users in item.Users)
+                            {
+                                <p>@users.FirstName</p>
+                            }
+
+                        </td>
+                    }
+
+                   
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--DataTables-->
+@section scripts{
+
+    <script>
+        $(function () {
+            $('#dataTable').dataTable();
+        });
+    </script>
+}
+
+
+
+

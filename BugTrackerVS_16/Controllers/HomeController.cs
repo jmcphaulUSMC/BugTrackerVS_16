@@ -3,13 +3,16 @@ using BugTrackerVS_16.Models.User_Roles;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
-
-
+using Microsoft.AspNet.Identity;
 
 namespace BugTrackerVS_16.Controllers
 {
     public class HomeController : Controller
     {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
+        ProjectsHelper pjHelper = new ProjectsHelper();
+        UserRolesHelper help = new UserRolesHelper();
 
         public ActionResult Index()
         {
@@ -17,19 +20,25 @@ namespace BugTrackerVS_16.Controllers
             return View();
         }
 
+        // GET: Projects
+        [Authorize]
+        public ActionResult DashBoard()
+        {
+
+            if (User.IsInRole("Admin"))
+            {
+                return View(db.Projects.ToList());
+            }
+            else
+            {
+                var userId = User.Identity.GetUserId();
+                var AssignProject = pjHelper.AssignedUserToProject(userId);
+
+                return View(AssignProject);
+            }
+
+        }
         public ActionResult Demo()
-        {
-
-            return View();
-        }
-
-        public ActionResult Profile()
-        {
-
-            return View();
-        }
-
-        public ActionResult About()
         {
 
             return View();

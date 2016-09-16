@@ -1,8 +1,11 @@
 ﻿@model BugTrackerVS_16.Models.AssignUserToRoleViewModel
 
 @{
-    ViewBag.Title = "EditRolesAndUser";
+    Layout = "~/Views/Shared/_BNewLayout.cshtml";
+
 }
+<link href="~/Scripts/lou-multi-select-a0f48de/css/multi-select.css" rel="stylesheet" />
+<a href="~/Scripts/lou-multi-select-a0f48de/css/multi-select.dev.css.map"></a>
 
 <h2>Add/Remove User </h2>
 
@@ -12,12 +15,12 @@
 
         <div class="title">
             <!-- Title -->
-            <h4>Change Users <strong>@Model.Name</strong>Role</h4>
+            <h4>Change <strong>@Model.Name</strong> Role</h4>
         </div>
 
         <div class="content">
 
-            @using (Html.BeginForm("AssignUserToRole","Admin",FormMethod.Post))
+            @using (Html.BeginForm("AssignUserToRole", "Admin", FormMethod.Post))
             {
                 @Html.HiddenFor(model => model.Id)
                 @Html.AntiForgeryToken()
@@ -25,27 +28,33 @@
                 <div class="form-horizontal">
 
                     <div class="form-group">
-                        <!-- Begin user select -->
-                        @Html.Label("Add Users to Role", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @Html.ListBox("SelectedRoles", Model.Roles)
                         </div>
-                    </div><!-- /user select -->
+                    </div>
 
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
 
                 </div>
             }
-    </div><!-- /card -->
         </div>
+    </div>
 
 </section>
 
+
 @section scripts
 {
-    <script src="~/Scripts/select2/select2.min.js"></script><!-- select2 -->
-    <script type="text/javascript">
-        $('select').select2();
+    <script src="~/Scripts/lou-multi-select-a0f48de/js/jquery.multi-select.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').multiSelect({
+                selectionHeader: "Add To Role",
+                selectableHeader: "Remove From Role"
+            });
+        })
     </script>
 
 }
+
+

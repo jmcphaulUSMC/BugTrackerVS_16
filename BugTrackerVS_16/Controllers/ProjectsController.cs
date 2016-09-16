@@ -15,8 +15,8 @@ namespace BugTrackerVS_16.Controllers
     public class ProjectsController : Controller
     {
 
-       private ApplicationDbContext db = new ApplicationDbContext();
-              ProjectsHelper pjHelper = new ProjectsHelper();
+        private ApplicationDbContext db = new ApplicationDbContext();
+        ProjectsHelper pjHelper = new ProjectsHelper();
         UserRolesHelper help = new UserRolesHelper();
 
         // GET: Projects
@@ -35,14 +35,14 @@ namespace BugTrackerVS_16.Controllers
 
                 return View(AssignProject);
             }
-            
+
         }
 
 
         // GET: Projects/Details/5
         [Authorize]
         public ActionResult Details(int? id)
-        { 
+        {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -83,25 +83,6 @@ namespace BugTrackerVS_16.Controllers
             return View(projects);
         }
 
-
-        // GET:  ProjectAssign/View
-        [Authorize]
-        public ActionResult ProjectView()
-        {
-            List<ProjectsViewModel> projectList = new List<ProjectsViewModel>();// Put my ProjectsViewModel in a list 
-            foreach (var project in db.Projects) //list of all projects in database and put them in a for each loop
-            {
-                ProjectsViewModel pv = new ProjectsViewModel(); //create another instance of my viewModel to control the data in the for each loop so the model contains
-
-                pv.projects = project;
-                pv.Users = pjHelper.UsersNotInProject(project.Id);
-                projectList.Add(pv);
-            }
-            return View(projectList);
-
-        }
-
-
         //GET://Project/Assign
         [Authorize]
         public ActionResult AssignUsers(int id)
@@ -121,13 +102,13 @@ namespace BugTrackerVS_16.Controllers
 
             return View(model);
         }
-    
 
-    //POST://Project/Assign
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult AssignUsers(AssignUserToProjectViewModel model)
-    {
+
+        //POST://Project/Assign
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AssignUsers(AssignUserToProjectViewModel model)
+        {
             if (model != null)//check that the model isn't null
             {
                 var project = db.Projects.Find(model.Id);//get the project that your currently assigning/removing users to/from
