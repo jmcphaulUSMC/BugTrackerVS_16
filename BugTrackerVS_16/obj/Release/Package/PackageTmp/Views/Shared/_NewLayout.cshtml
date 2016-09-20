@@ -126,8 +126,7 @@
                             <span class="badge badge-info bounceIn animation-delay6 active">@Notification.GetMyNotifications()</span>
                             <ul class="dropdown-menu notification dropdown-3 pull-right">
                                 <li><a href="~/Template/#">You have @Notification.GetMyNotifications() new notifications</a></li>
-                                <li><span class="m-left-xs">@Html.Action("_TicketNotifications", "Tickets")</span></li>
-                                <li><a href="~/Template/#">View all notifications</a></li>
+                                <li style="position:absolute;"><div><span class="m-left-xs">@Html.Action("_TicketNotifications", "Tickets")</span></div></li>
                             </ul>
                         </li>
                     </ul>

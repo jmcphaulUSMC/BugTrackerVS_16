@@ -3,11 +3,19 @@
          
 @foreach (var message in Model)
 {
-    <a href="@Url.Action("Details","Tickets", new { id = message.TicketId})">
-        <span class="notification-icon bg-warning">
-            <i class="fa fa-warning"></i>
-        </span>
-        <span class="m-left-xs">@message.Message </span>
-        <span class= time text-muted">Just now</span>
-    </a>
+    <div class="text-wrapper">
+        <a href="@Url.Action("Details","Tickets", new { id = message.TicketId})">
+            <span class="notification-icon bg-warning">
+                <i class="fa fa-warning"></i>
+            </span>
+            @if (message.HasBeenRead == true)
+            {
+                <span style="color:dimgray;" class="m-left-xs">@message.Message </span>
+            }
+            else
+            {
+                <span style="color:#00ff21;" class="m-left-xs">@message.Message</span>
+            }
+        </a>
+    </div>
 }

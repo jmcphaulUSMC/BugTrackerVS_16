@@ -58,9 +58,9 @@
                         <li class="active">
                             <a href="@Url.Action("Demo","Home")">Demo</a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="#power">Power</a>
-                        </li>
+                        </li>*@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="btn-link"><a href="@Url.Action("LogIn","Account")" class="btn btn-sm btn-default">Login</a></li>
@@ -657,19 +657,20 @@
                 </div><!-- ./row -->
             </div><!-- ./container -->
         </div><!-- ./section -->
-        <div class="section bg-success section-padding" id="testimonialSection">
+        @*<div class="section bg-success section-padding" id="testimonialSection">
             <div class="container text-center">
                 <div class="text-center" >
                     <h3 class="text-upper no-m-top">Powered By:</h3>
-                    @*<p>What they say about SIMPLIFY template.</p>*@
+                    @*<p>What they say about SIMPLIFY template.</p>
                 </div>
-                <div class="row m-top-lg">
+                @*<div class="row m-top-lg">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="owl-carousel">
                             <div class="item">
-                                <h5 style="line-height:30px; height:300px; width:300px; text-align:center">
-                                    <img src="~/Template/images/csharpImage.png" alt="Image Error" style="height:300px; width:300px;">
+                                <h5 style="line-height:30px; height:300px; width:300px; text-align:center;">
+                                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum. Mauris convallis mauris at pellentesque volutpat. Phasellus at ultricies neque, quis malesuada augue.”
                                 </h5>
+                                <div class="m-top-md">- Karen Martin, Project Manager</div>
                             </div>
                             <div class="item">
                                 <h5 style="line-height:30px; height:300px; width:300px; text-align:center">
@@ -692,11 +693,11 @@
                                 </h5>
                             </div>
                         </div>
-                    </div><!-- ./col -->
+                    </div> ./col 
                 </div><!-- ./row -->
             </div><!-- ./container -->
         </div><!-- ./section -->
-        @*<footer class="front-end-footer">
+       <footer class="front-end-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">

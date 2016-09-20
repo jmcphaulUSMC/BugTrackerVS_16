@@ -1,3 +1,5 @@
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.dll
+C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.csprojResolveAssemblyReference.cache
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\ApplicationInsights.config
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\roslyn\csc.exe
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -83,6 +85,4 @@ C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.OAuth
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.Google.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.Twitter.xml
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.dll
 C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.pdb
-C:\VS Projects\BugTrackerVS_16\BugTrackerVS_16\obj\Debug\BugTrackerVS_16.csprojResolveAssemblyReference.cache
