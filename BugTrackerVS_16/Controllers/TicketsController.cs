@@ -86,7 +86,9 @@ namespace BugTrackerVS_16.Controllers
 
             var notifyMessage = db.TicketNotifications
                         .Where(x => x.MessageForId ==userid)
-                        .Where(x => x.HasBeenRead == false).ToList();
+                        //.Where(x => x.HasBeenRead == false)
+                        .ToList();
+
 
             return PartialView(notifyMessage.ToList());
         }
@@ -97,12 +99,15 @@ namespace BugTrackerVS_16.Controllers
         [Authorize]
         public ActionResult IndexAssign()
         {
-            //var userId = User.Identity.GetUserId();// get the user "Id"
+
+            var manager = help.UsersInRole("ProjectManager");
+
             ViewBag.CurrentUser = User.Identity.GetUserId();// get the user "Id"
 
             var userId = User.Identity.GetUserId(); //gets the user "Id" 
-            var tickets = new List<Tickets>();
+            ViewBag.ManagerId = new SelectList(manager, "Id", "DisplayName");
 
+            var tickets = new List<Tickets>();
 
             //var tickets = db.Tickets;//go to the database and grab alll the tickets 
             var tickets2 = db.Tickets.Where(t => t.Project.ManagerId == userId);// 
@@ -136,20 +141,6 @@ namespace BugTrackerVS_16.Controllers
         [Authorize]
         public ActionResult IndexProjects()
         {
-
-            //var manager = help.UsersInRole("ProjectManager");
-            ////var userId = User.Identity.GetUserId();// get the user "Id"
-            //ViewBag.CurrentUser = User.Identity.GetUserId();// get the user "Id"
-            //ViewBag.ManagerId = new SelectList(manager, "Id", "DisplayName");
-
-            //var userId = User.Identity.GetUserId();// get the user "Id"
-            //var currentUser = db.Users.Find(userId);//go to the database and find the user by their "id" 
-            //var projectTickets = currentUser.Projects.SelectMany(t => t.Tickets);
-            ////with the currentUser grab the project assoicated with that user and selectmany tickets for all the projects
-            //ViewBag.Project = currentUser.Projects.SelectMany(t => t.Tickets);
-
-            //return View(projectTickets);
-            //var userId = User.Identity.GetUserId();// get the user "Id"
             ViewBag.CurrentUser = User.Identity.GetUserId();// get the user "Id"
 
             //database look at tickets table and include all Fields in AssignedToUser
@@ -169,8 +160,6 @@ namespace BugTrackerVS_16.Controllers
         public ActionResult IndexTickets(int id)
         {
             {
-
-
                 ViewBag.ProjectName = db.Projects.Find(id).Name;
 
                 var projectTickets = db.Projects.Find(id);
@@ -198,12 +187,21 @@ namespace BugTrackerVS_16.Controllers
             ////Grabs the User Identity the Long ugly looking number/letters "id"
             string userId = User.Identity.GetUserId();
 
+            foreach (var N in db.TicketNotifications.Where(x => x.TicketId == id).Where(x => x.MessageForId == userId).Where(x => x.HasBeenRead == false))
+            {
+                N.HasBeenRead = true;
+            }
+            db.SaveChanges();
+
             ViewBag.AllowedToComment = User.IsInRole("Admin") || (User.IsInRole("Project Manager") && db.Users.FirstOrDefault(u => u.Id == userId).Projects.Any(p => p.Tickets.Any(t => t.Id == id)))
   //check if that user is role and if so go to the database and go to the Users Table and return the first record where the "Id" is EQUAL to userId. If there is no record with and "Id"  that is EQUAL to userId return null. Then look at the projects assoicated with that user that was just returned and look at all the tickets for all those projects if any of those tickets "Id" is EQUAL to the id parameter of the method reutrn true IF NOT EQUAL return FALSE.
   || (User.IsInRole("Developer") && db.Tickets.FirstOrDefault(t => t.Id == id).AssignedToUserId == userId) ||
            //check if that user is in role, go to the database and go to the Tickets table and grab the first record where the ticket "Id" is equal to the parameter "id". If there is not record return a DEFAULT VALUE which is null. For ever ticket that is return look at that the "AssignedToUseId" property and if it is EQUAL to the userId return if it's true  
            (User.IsInRole("Submitter") && db.Tickets.FirstOrDefault(t => t.Id == id).OwnerUserId == userId);
             RedirectToAction("Details");
+
+
+
             return  View(tickets);
 
            

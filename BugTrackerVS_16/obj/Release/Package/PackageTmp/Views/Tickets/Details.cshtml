@@ -13,6 +13,8 @@
         <dl class="dl-horizontal">
             <dt>User</dt>
             <dd>@Html.DisplayFor(model => model.OwnerUser.FirstName)</dd>
+            <dt>Developer</dt>
+            <dd>@Html.DisplayFor(model => model.AssignedToUser.FirstName)</dd>
             @*<dt>User</dt>
                 <dd>@Html.DisplayFor(model => model.AssignedToUser.FirstName)</dd>*@
             <dt>Project</dt>
@@ -39,7 +41,12 @@
     <a href="@Url.Action("Index", "Tickets")" class="btn btn-success">Back to Tickets</a>
 </p>
 
-
+<!--********** HISTORY SECTION ***********-->
+<div class="row">
+    <div class="col-md-12">
+        <div id="section3">@Html.Partial("_IndexHistories", Model)</div>
+    </div>
+</div>
 
 <!--********** COMMENT SECTION ***********-->
 <div class="row">
@@ -49,14 +56,8 @@
 
 
     <!--********** ATTACHMENTS SECTION ***********-->
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div id="section2">@Html.Partial("_IndexAttachment", Model)</div>
     </div>
 </div>
 
-<!--********** HISTORY SECTION ***********-->
-<div class="row">
-    <div class="col-md-12">
-        <div id="section3">@Html.Partial("_IndexHistories", Model)</div>
-    </div>
-</div>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<BugTrackerVS_16.Models.Tickets>
      
 @{
-     Layout = "~/Views/Shared/_DNewLayout.cshtml";
+     Layout = "~/Views/Shared/_BNewLayout.cshtml";
 
 } 
 
@@ -30,27 +30,18 @@
                 @Html.DisplayName("Project")
             </th>
             <th>
-                @Html.DisplayName("Priority")
-            </th>
-            <th>
-                @Html.DisplayName("Status")
-            </th>
-            <th>
-                @Html.DisplayName("Type")
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Created)
+                @Html.DisplayName("Priority")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Updated)
+                @Html.DisplayNameFor(model => model.Created)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -67,24 +58,16 @@
                     @Html.DisplayFor(modelItem => item.Project.Name, "Project")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TicketPriority.Name, "Priority")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TicketStatus.Name, "Status")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TicketType.Name, "Type")
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>@String.Format("{0:MM/dd/yyyy}", item.Created)</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Updated)
+                    @Html.DisplayFor(modelItem => item.TicketPriority.Name, "Priority")
                 </td>
+                
+                <td>@String.Format("{0:MM/dd/yyyy}", item.Created)</td>
                 <td>
 @if (User.IsInRole("Admin"))
 {

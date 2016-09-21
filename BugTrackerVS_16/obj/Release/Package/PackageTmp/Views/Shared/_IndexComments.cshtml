@@ -19,7 +19,7 @@
                         @if (User.Identity.IsAuthenticated)
                     {
                             <div class="input-group" style="width: 100%; height: 10%;">
-                                <input id="Comment" name="Comment" type="text" class="form-control" placeholder="Comment...">
+                                <input style="margin:3px; width:80%;" id="Comment" name="Comment" type="text" class="form-control" placeholder="Comment...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-success btn-sm no-shadow" type="submit" id="btn-chat">Send</button>
                                 </span>
@@ -43,7 +43,7 @@
             {
                 foreach (var item in Model.TicketComments.OrderByDescending(c => c.Created))
                 {
-                    <div class="col-md-12" style="padding-top: 4%; left:50%;">
+                    <div class="col-md-12" style="padding-top: 4%;">
                         <div class="smart-widget widget-purple">
                             <div class="smart-widget-header">
                                 <i class="fa fa-comment"></i> Comment
@@ -100,8 +100,8 @@
                                                 </div>
                                                 @if (User.IsInRole("Admin") | User.IsInRole("ProjectManager"))
                                                 {
-                                                    <a href="@Url.Action("Edit", "TicketComments", new { id = item.Id })">Edit</a>
-                                                    <a href="@Url.Action("Delete", "Comments", new { id = item.Id })">Delete</a>
+                                                    <a  style="margin: 1%;"class="btn btn-success btn-sm no-shadow" href="@Url.Action("Edit", "TicketComments", new { id = item.Id })">Edit</a>
+                                                    <a  style="margin: 1%;" class="btn btn-success btn-sm no-shadow" href="@Url.Action("Delete", "Comments", new { id = item.Id })">Delete</a>
                                                 }
                                             </li>
                                         </ul>

@@ -10,19 +10,17 @@
             @using (Html.BeginForm("Create", "TicketAttachments", new { tId = Model.Id }, FormMethod.Post, new { enctype = "Multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                @Html.HiddenFor(m => m.TicketAttachments)
+                @Html.HiddenFor(m => m.Id, new { @Name = "TicketId" })
+
                 <div class="form-horizontal">
-                    <div class="panel-heading">
-                        <label class="control-label">Attachment</label>
-                    </div>
-                    <input name="image" type="file" class="form-control" id="fileUpload" value="@Model.Id" />
+                    <input size="3" name="image" type="file" class="form-control" id="fileUpload" value="@Model.Id" />
 
                     @Html.ValidationMessage("image", new { @class = "text-danger" })
                     <br />
-                    <label class="control-label">Attachment Description</label>
-                    <textarea name="Description" class="form-control" rows="3" placeholder="Please Enter a brief Description"></textarea>
+                    <label style="margin-left:1%;" class="control-label">Attachment Description</label>
+                    <textarea type="text" name="Description" class="form-control" rows="3" placeholder="Please Enter a brief Description"></textarea>
                     <br />
-                    <button type="submit" class="btn btn-default">Attach</button>
+                    <button style="margin-left:1%;" type="submit" class="btn btn-success btn-sm no-shadow">Attach</button>
                 </div>
             }
         </div>

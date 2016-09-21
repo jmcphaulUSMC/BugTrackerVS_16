@@ -4,7 +4,7 @@
 @foreach (var message in Model)
 {
     <div class="text-wrapper">
-        <a href="@Url.Action("Details","Tickets", new { id = message.TicketId})">
+        <a  style="overflow: hidden;" href="@Url.Action("Details","Tickets", new { id = message.TicketId})">
             <span class="notification-icon bg-warning">
                 <i class="fa fa-warning"></i>
             </span>

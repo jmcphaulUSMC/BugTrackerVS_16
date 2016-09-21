@@ -101,7 +101,6 @@ namespace BugTrackerVS_16.Controllers
         [OutputCache(NoStore =true, Duration = 0, VaryByParam ="None")]
         public async Task<ActionResult> DemoLogin(LoginViewModel model, string demo)
         {
-      
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true

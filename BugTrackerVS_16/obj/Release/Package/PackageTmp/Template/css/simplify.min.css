@@ -4355,7 +4355,7 @@ button, input, label, select, textarea.form-control {
 }
 
 textarea.form-control {
-    margin: 0;
+    margin: 5px;
 }
 
     .form-control:focus, .uneditable-input:focus, input[type=color]:focus, input[type=date]:focus, input[type=datetime-local]:focus, input[type=datetime]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, input[type=password]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=text]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, select[multiple]:focus, textarea.form-control:focus {

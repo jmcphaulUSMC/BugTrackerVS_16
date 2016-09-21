@@ -15,9 +15,8 @@
     }
 </style>
 <h2>Project Tickets</h2>
-<p style="text-align:right;">
-    <a href="@Url.Action("Create","Tickets")" class="btn btn-success">Create New</a>
-</p>
+
+
 <table class="table table-striped table-bordered" id="dataTable">
 
     <thead>
@@ -35,17 +34,7 @@
                 @Html.DisplayName("Priority")
             </th>
             <th>
-                @Html.DisplayName("Status")
-            </th>
-            <th>
-                @Html.DisplayName("Type")
-            </th>
- 
-            <th>
                 @Html.DisplayNameFor(model => model.Created)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated)
             </th>
             <th></th>
         </tr>
@@ -66,17 +55,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.TicketPriority.Name, "Priority")
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TicketStatus.Name, "Status")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TicketType.Name, "Type")
-                </td>
-          
                 <td>@String.Format("{0:MM/dd/yyyy}", item.Created)</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Updated)
-                </td>
+              
                 <td>
                     @if (User.IsInRole("Admin"))
                     {
