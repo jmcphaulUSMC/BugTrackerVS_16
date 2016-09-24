@@ -86,13 +86,10 @@ namespace BugTrackerVS_16.Controllers
 
             var notifyMessage = db.TicketNotifications
                         .Where(x => x.MessageForId ==userid)
-                        //.Where(x => x.HasBeenRead == false)
                         .ToList();
-
 
             return PartialView(notifyMessage.ToList());
         }
-
 
 
         // GET: Project Manager Tickets
@@ -100,19 +97,9 @@ namespace BugTrackerVS_16.Controllers
         public ActionResult IndexAssign()
         {
 
-            var manager = help.UsersInRole("ProjectManager");
-
-            ViewBag.CurrentUser = User.Identity.GetUserId();// get the user "Id"
-
             var userId = User.Identity.GetUserId(); //gets the user "Id" 
-            ViewBag.ManagerId = new SelectList(manager, "Id", "DisplayName");
 
             var tickets = new List<Tickets>();
-
-            //var tickets = db.Tickets;//go to the database and grab alll the tickets 
-            var tickets2 = db.Tickets.Where(t => t.Project.ManagerId == userId);// 
-            var tickets3 = db.Tickets.Where(t => t.AssignedToUserId == userId);
-            var tickets4 = db.Tickets.Where(t => t.OwnerUserId == userId);
 
             if (User.IsInRole("Admin"))
             {
@@ -296,7 +283,7 @@ namespace BugTrackerVS_16.Controllers
 
                 helper.CheckForHistory(originalTicket, model);
                 helper.CheckForNotification(originalTicket, model);
-
+               
                 model.Updated = DateTime.Now;
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();

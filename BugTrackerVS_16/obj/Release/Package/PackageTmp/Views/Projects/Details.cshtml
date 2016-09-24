@@ -6,21 +6,30 @@
 }
 
 <style>
-a.my-link { color: #ffffff }
-a.my-class { color: #ffffff }
-a.my-class:active { color: #ffffff }
-a.my-class:link { color: #ffffff }
-a.my-class:visited { color: #ffffff }
+    a.my-link {
+        color: #ffffff;
+    }
+
+    a.my-class {
+        color: #ffffff;
+    }
+
+        a.my-class:active {
+            color: #ffffff;
+        }
+
+        a.my-class:link {
+            color: #ffffff;
+        }
+
+        a.my-class:visited {
+            color: #ffffff;
+        }
 </style>
-<h2>Details</h2>
+<h2>Project</h2>
 
 <div>
-    <h4>Projects</h4>
-    <hr />
-
-    <div class="btn btn-warning">
-        @Html.ActionLink("Previous Page", "Index", new { @class = "my-class" })
-    </div>
+    <h4>Details</h4>
 
     <!--TABLE FOR PROEJCTS-->
     <table class="table table-striped">
@@ -39,15 +48,17 @@ a.my-class:visited { color: #ffffff }
                     @Html.DisplayFor(model => model.Name)
                 </td>
                 <td>
-                    <div class="btn btn-info">
-                        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "my-class" })
-                    </div>
+                    @if (User.IsInRole("Admin") || User.IsInRole("ProjectManager"))
+                    {
+                        <div class="btn btn-info">
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "my-class" })
+                        </div>
+                    }
                 </td>
-           </tr>
-     </tbody>
+            </tr>
+        </tbody>
     </table>
     <!--****** END TABLE FOR PROEJCTS ******-->
-
     <!--TABLE FOR MEMBERS-->
     <table class="table table-striped">
         <thead>
@@ -69,19 +80,19 @@ a.my-class:visited { color: #ffffff }
         </tbody>
     </table>
     <!--****** END TABLE FOR MEMBERS ******-->
-
     <!--********** TICKETS SECTION ***********-->
-   <div id="">@Html.Partial("_IndexProjects", Model.Tickets)</div>
-
+    <div id="">@Html.Partial("_IndexProjects", Model.Tickets)</div>
 </div>
-
+<div class="btn btn-warning">
+    @Html.ActionLink("Previous Page", "Index", new { @class = "my-class" })
+</div>
 
 <!--DataTables-->
 @section scripts{
 
     <script>
-	$(function()	{
-		$('#dataTable').dataTable();
-	});
+        $(function () {
+            $('#dataTable').dataTable();
+        });
     </script>
 }

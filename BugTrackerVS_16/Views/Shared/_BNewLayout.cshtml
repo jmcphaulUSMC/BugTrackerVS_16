@@ -59,88 +59,47 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <ul class="nav-notification pull-right">
-                        <li>
-                            <a href="~/Template/#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-lg"></i></a>
-                            <span class="badge badge-danger bounceIn">1</span>
-                            <ul class="dropdown-menu dropdown-sm pull-right user-dropdown">
-                                <li class="user-avatar">
-                                    <img src="~/Template/images/profile/profile1.jpg" alt="" class="img-circle">
-                                    <div class="user-content">
-                                        <h5 class="no-m-bottom">@User.Identity.Name</h5>
-                                        <div class="m-top-xs">
-                                            <a href="~/Template/profile.html" class="m-right-sm">Profile</a>
-                                            <div>@Html.Partial("_LoginPartial")</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="~/Template/inbox.html">
-                                        Inbox
-                                        <span class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="~/Template/#">
-                                        Notification
-                                        <span class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="~/Template/#">Setting</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
                     <a href="@Url.Action("Index", "Home")" class="brand">
                         <strong><span class="text-success">Semper Fi </span>BugTracker</strong>
                     </a>
                 </div>
                 <div class="nav-container">
                     <div class="pull-right m-right-sm">
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <div class="user-block hidden-xs">
-                                <a href="~/Template/#" id="userToggle" data-toggle="dropdown">
-                                    <img src="~/Template/images/Rank2.png" alt="" class="img-circle inline-block user-profile-pic">
-                                    <div class="user-detail inline-block">
-                                        @User.Identity.Name
-                                        <i class="fa fa-angle-down"></i>
-                                    </div>
-                                </a>
-                                <div class="panel border dropdown-menu user-panel">
-                                    <div class="panel-body paddingTB-sm">
-                                        <ul>
-                                            <li>
-                                                <form method="post" action="@Url.Action("LogOff","Account")" id="logoutForm">
-                                                    @Html.AntiForgeryToken()
-                                                    <a href="javascript:document.getElementById('logoutForm').submit()">
-                                                        <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">Sign Out</span>
-                                                    </a>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <div class="user-block hidden-xs">
+                            <a href="~/Template/images/Rank.png" id="userToggle" data-toggle="dropdown">
+                                <img src="~/Template/images/Rank2.png" alt="" class="img-circle inline-block user-profile-pic">
+                                <div class="user-detail inline-block">
+                                    @User.Identity.Name
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <div class="panel border dropdown-menu user-panel">
+                                <div class="panel-body paddingTB-sm">
+                                    <ul>
+                                        <li>
+                                            <form method="post" action="@Url.Action("LogOff","Account")" id="logoutForm">
+                                                @Html.AntiForgeryToken()
+                                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                                    <i class="fa fa-power-off fa-lg"></i><span class="m-left-xs">Sign Out</span>
+                                                </a>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        }
+                        </div>
                         <ul class="nav-notification">
                             <li>
-
                                 <a href="~/Template/#" data-toggle="dropdown"><i class="fa fa-bell fa-lg"></i></a>
                                 <span class="badge badge-info bounceIn animation-delay6 active">@Notification.GetMyNotifications()</span>
                                 <ul class="dropdown-menu notification dropdown-3 pull-right">
                                     <li><a href="~/Template/#">You have @Notification.GetMyNotifications() new notifications</a></li>
-                                    <li><span class="m-left-xs">@Html.Action("_TicketNotifications", "Tickets")</span></li>
-                                    <li><a href="~/Template/#">View all notifications</a></li>
+                                    <li style="display: block; overflow: auto; max-width: 100%;"><span class="m-left-xs">@Html.Action("_TicketNotifications", "Tickets")</span></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
-
             </div><!-- ./top-nav-inner -->
         </header>
     </div>
@@ -218,8 +177,8 @@
                             </span>
                         </a>
                         <ul class="submenu">
+                            <li><a href="@Url.Action("IndexAssign", "Tickets" )"><span class="submenu-label">Recruit Tickets</span></a></li>
                             <li><a href="@Url.Action("Index", "Tickets" )"><span class="submenu-label">All Tickets</span></a></li>
-                            <li><a href="@Url.Action("IndexAssign", "Tickets" )"><span class="submenu-label">Assign Tickets</span></a></li>
                         </ul>
                     </li>
                 </ul>

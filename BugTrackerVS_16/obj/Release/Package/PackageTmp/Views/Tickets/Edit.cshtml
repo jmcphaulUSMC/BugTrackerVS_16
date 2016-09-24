@@ -21,6 +21,7 @@
                 @Html.HiddenFor(model => model.Id)
                 @Html.HiddenFor(model => model.Created)
                 @Html.HiddenFor(model => model.OwnerUserId)
+                @Html.HiddenFor(model => model.ProjectId) 
 
                 @*@if (Model.AssignedToUserId == User.Identity.GetUserId() || Model.Project.ManagerId == User.Identity.GetUserId())
                     {

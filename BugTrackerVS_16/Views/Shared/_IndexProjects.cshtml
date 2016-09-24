@@ -33,10 +33,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Created)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Updated)
-            </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -72,23 +69,19 @@
                     @Html.DisplayFor(modelItem => item.Created)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Updated)
-                </td>
-                <td>
 
                     @if (User.IsInRole("Admin"))
                 {
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                Actions 
-                            <span class="caret"></span>
+                                Actions
+                                <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Create New ", "Create")</li>
-                                <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
-                                <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
+                                <li>@Html.ActionLink("Create New ", "Create", "Tickets")</li>
+                                <li>@Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, htmlAttributes: new { })</li>
                                 <li class="divider"></li>
-                                <li>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</li>
+                                <li>@Html.ActionLink("Delete", "Delete", "Tickets", new { id = item.Id }, htmlAttributes: new { })</li>
                             </ul>
                         </div>
                     }
@@ -100,10 +93,10 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Create New ", "Create")</li>
-                                <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
-                                <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
+                                <li>@Html.ActionLink("Create New ", "Create", "Tickets")</li>
+                                <li>@Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, htmlAttributes: new { })</li>
                                 <li class="divider"></li>
+                                <li>@Html.ActionLink("Delete", "Delete", "Tickets", new { id = item.Id }, htmlAttributes: new { })</li>
                             </ul>
                         </div>
                     }
@@ -115,10 +108,8 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Create New ", "Create")</li>
-                                <li>@Html.ActionLink("Edit", "Edit", new { id = item.Id })</li>
-                                <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
-                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Create New ", "Create", "Tickets")</li>
+                                <li>@Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, htmlAttributes: new { })</li>
                             </ul>
                         </div>
                     }
@@ -130,9 +121,8 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Create New ", "Create")</li>
-                                <li>@Html.ActionLink("Details", "Details", new { id = item.Id })</li>
-                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Create New ", "Create", "Tickets")</li>
+                                <li>@Html.ActionLink("Edit", "Edit", "Tickets", new { id = item.Id }, htmlAttributes: new { })</li>
                             </ul>
                         </div>
                     }
