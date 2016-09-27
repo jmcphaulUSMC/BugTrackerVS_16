@@ -32,29 +32,30 @@
                 <th>By</th>
                 <th>Attachment</th>
                 <th>Description</th>
+                <th>Details</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var attach in Model.TicketAttachments)
             {
                 <tr>
-                    @attach.Created.ToString("d");
-
+                    <td>@attach.Created.ToString("d")</td>
                     <td>@attach.User.DisplayName</td>
-                    <td><a href="@attach.FileURL">@attach.Created</a></td>
+                    <td><a href="@attach.FileURL">@String.Format("{0:MM/dd/yyyy}", attach.Created)</a></td>
                     <td>@attach.Description</td>
+                    <td>
+                        @if (attach.FileURL != null)
 
-                    @if (attach.FileURL != null)
-
-                    {
-                        <td><a href="@attach.FilePath"><img class="img-responsive" src="@attach.FileURL" alt="" /></a>Image</td>
-                    }
-
+                        {
+                            <a href="@attach.FilePath" target="_top"><img class="img-responsive" src="@attach.FileURL" alt="" /></a>
+                        }
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
 <!--DataTables-->
 @section scripts{
 

@@ -675,7 +675,8 @@
     </Content>
     <Content Include="private.config" />
     <Content Include="Js\multi-select.dev.css.map" />
-    <None Include="Properties\PublishProfiles\jmcphaulUSMC-bugtracker.pubxml" />
+    <None Include="Properties\PublishProfiles\jmcphaulUSMC-bugtracker - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\jmcphaulUSMC-bugtracker - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

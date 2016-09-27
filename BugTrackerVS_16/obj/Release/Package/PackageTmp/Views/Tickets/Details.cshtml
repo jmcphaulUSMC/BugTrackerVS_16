@@ -14,9 +14,7 @@
             <dt>User</dt>
             <dd>@Html.DisplayFor(model => model.OwnerUser.FirstName)</dd>
             <dt>Developer</dt>
-            <dd>@Html.DisplayFor(model => model.AssignedToUser.FirstName)</dd>
-            @*<dt>User</dt>
-                <dd>@Html.DisplayFor(model => model.AssignedToUser.FirstName)</dd>*@
+            <dd>@Html.DisplayFor(model => model.AssignedToUser.FirstName) @Html.DisplayFor(model => model.AssignedToUser.LastName)</dd>
             <dt>Project</dt>
             <dd>@Html.DisplayFor(model => model.Project.Name)</dd>
             <dt>Priority</dt>
